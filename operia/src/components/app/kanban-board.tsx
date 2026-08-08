@@ -252,7 +252,7 @@ function JobCard({
     <div
       ref={setNodeRef}
       className={cn(
-        "group relative rounded-[2px] border border-border bg-surface p-3 transition",
+        "group relative rounded-xl border border-border bg-surface p-3 transition",
         isDragging && "opacity-30",
         overlay && "rotate-2",
       )}

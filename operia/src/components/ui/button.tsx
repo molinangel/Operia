@@ -2,22 +2,18 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-/**
- * Botones del sistema «parte de trabajo»: rectangulares, de un solo plano,
- * sin sombras difusas ni esquinas redondeadas. Se comportan como los sellos y
- * casillas de un formulario, no como burbujas de una app.
- */
+/** Botones: un primario sólido, un secundario de contorno y poco más. */
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[2px] font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         primary:
-          "bg-accent text-accent-fg hover:bg-accent-hover",
+          "bg-accent text-accent-fg shadow-[var(--shadow-xs)] hover:bg-accent-hover",
         secondary:
-          "bg-fg text-bg hover:opacity-88",
+          "bg-fg text-bg hover:opacity-90",
         outline:
-          "border border-fg bg-transparent text-fg hover:bg-fg hover:text-bg",
+          "border border-border bg-surface text-fg shadow-[var(--shadow-xs)] hover:bg-surface-2",
         ghost: "text-fg-muted hover:bg-surface-2 hover:text-fg",
         danger: "bg-danger text-white hover:opacity-90",
         link: "text-accent underline underline-offset-4 decoration-1 hover:decoration-2",

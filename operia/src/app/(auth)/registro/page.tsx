@@ -62,7 +62,7 @@ export default async function RegisterPage({ searchParams }: Props) {
           ))}
         </ul>
 
-        <div className="mt-10 rounded-[2px] border border-border bg-surface p-5">
+        <div className="mt-10 rounded-xl border border-border bg-surface p-5">
           <p className="text-sm leading-relaxed text-fg-muted">
             <strong className="text-fg">Sos de los primeros.</strong> A los
             primeros 20 negocios les queda un 40% de descuento de por vida, a
@@ -72,7 +72,7 @@ export default async function RegisterPage({ searchParams }: Props) {
       </aside>
 
       <div className="w-full">
-        <div className="rounded-[2px] border border-border bg-surface p-6 sm:p-8">
+        <div className="rounded-xl border border-border bg-surface p-6 sm:p-8">
           <RegisterForm
             presets={PRESETS}
             initialIndustry={initialIndustry}

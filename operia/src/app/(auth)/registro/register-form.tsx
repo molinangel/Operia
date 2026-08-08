@@ -108,7 +108,7 @@ export function RegisterForm({
               key={preset.key}
               type="button"
               onClick={() => choose(preset.key)}
-              className="flex items-start gap-3 rounded-[2px] border border-border bg-surface-2 p-3.5 text-left transition hover:border-accent hover:bg-accent-soft"
+              className="flex items-start gap-3 rounded-xl border border-border bg-surface-2 p-3.5 text-left transition hover:border-accent hover:bg-accent-soft"
             >
               <span className="text-xl leading-none" aria-hidden>
                 {preset.icon}

@@ -92,7 +92,7 @@ export default async function JobDetailPage({
       <div className="mt-7 grid gap-5 lg:grid-cols-[1.6fr_1fr] lg:items-start">
         <div className="space-y-5">
           {job.description && (
-            <section className="rounded-[2px] border border-border bg-surface p-5">
+            <section className="rounded-xl border border-border bg-surface p-5">
               <h2 className="text-sm font-semibold">Detalle</h2>
               <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-fg-muted">
                 {job.description}
@@ -102,7 +102,7 @@ export default async function JobDetailPage({
 
           {fieldDefs.length > 0 &&
             fieldDefs.some((f) => custom[f.key] !== undefined) && (
-              <section className="rounded-[2px] border border-border bg-surface p-5">
+              <section className="rounded-xl border border-border bg-surface p-5">
                 <h2 className="text-sm font-semibold">Datos de tu rubro</h2>
                 <dl className="mt-3 grid gap-3 sm:grid-cols-2">
                   {fieldDefs
@@ -144,7 +144,7 @@ export default async function JobDetailPage({
             }}
           />
 
-          <section className="rounded-[2px] border border-border bg-surface">
+          <section className="rounded-xl border border-border bg-surface">
             <div className="border-b border-border px-5 py-3.5">
               <h2 className="text-sm font-semibold">Historial</h2>
             </div>
@@ -178,7 +178,7 @@ export default async function JobDetailPage({
 
         <aside className="space-y-5">
           {job.contact ? (
-            <section className="rounded-[2px] border border-border bg-surface p-5">
+            <section className="rounded-xl border border-border bg-surface p-5">
               <h2 className="text-sm font-semibold">Cliente</h2>
               <Link
                 href={`${base}/contactos/${job.contact.id}`}
@@ -219,7 +219,7 @@ export default async function JobDetailPage({
           )}
 
           {job.asset && (
-            <section className="rounded-[2px] border border-border bg-surface p-5">
+            <section className="rounded-xl border border-border bg-surface p-5">
               <h2 className="text-sm font-semibold">{v.asset}</h2>
               <Link
                 href={`${base}/activos/${job.asset.id}`}
@@ -235,7 +235,7 @@ export default async function JobDetailPage({
             </section>
           )}
 
-          <section className="rounded-[2px] border border-border bg-surface">
+          <section className="rounded-xl border border-border bg-surface">
             <div className="border-b border-border px-5 py-3.5">
               <h2 className="text-sm font-semibold">Pagos</h2>
             </div>

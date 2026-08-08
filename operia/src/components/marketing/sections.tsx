@@ -1,167 +1,128 @@
 import Link from "next/link";
+import {
+  ArrowRight, Bell, Building2, Calendar, Check, ChartNoAxesColumn, Clock,
+  Cpu, FileText, Folder, Heart, LayoutGrid, Layers, Link2, MessageCircle,
+  Package, Settings, Shield, Smartphone, Users, Wallet, Car, Award, X,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Container, SectionHeading } from "@/components/ui/primitives";
+import { Container } from "@/components/ui/primitives";
 import { formatMoney } from "@/lib/money";
 import { isUnlimited, PLANS, yearlyCents } from "@/lib/plans";
 import { type IndustryPreset, presetPath } from "@/lib/presets";
 import { site, whatsappLink } from "@/lib/site";
 import { cn } from "@/lib/utils";
-import { StatusFlow, WhatsappNote, WorkOrderSheet } from "./work-order";
+import { AppPreview, MessagePreview } from "./app-preview";
 
-/* ════════════════════════════════════════════════════════════════
-   PORTADA
+const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  layout: LayoutGrid, car: Car, file: FileText, message: MessageCircle,
+  wallet: Wallet, package: Package, cpu: Cpu, shield: Shield, calendar: Calendar,
+  building: Building2, award: Award, users: Users, smartphone: Smartphone,
+  heart: Heart, bell: Bell, layers: Layers, chart: ChartNoAxesColumn,
+  clock: Clock, folder: Folder, link: Link2, check: Check, settings: Settings,
+};
 
-   Asimétrica y alineada a la izquierda. El hero centrado con píldora,
-   degradado y dos botones es el molde que comparten miles de landings;
-   acá la jerarquía la marcan la retícula y la tipografía.
-   ════════════════════════════════════════════════════════════════ */
+// ── PORTADA ───────────────────────────────────────────────────────
 
 export function Hero({ preset }: { preset: IndustryPreset }) {
   const m = preset.marketing;
 
   return (
-    <section className="relative overflow-hidden border-b border-rule">
-      <div
-        className="paper-grid pointer-events-none absolute inset-0"
-        aria-hidden
-      />
+    <section className="border-b border-border">
+      <Container className="py-20 sm:py-28">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="animate-in-up eyebrow">{preset.name}</p>
 
-      <Container className="relative">
-        {/* Cinta de encabezado, como el membrete de un formulario */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border py-3">
-          <span className="label">
-            Formulario 01 · Gestión de servicios
-          </span>
-          <span className="label">
-            Prueba {site.trialDays} días · sin tarjeta
-          </span>
+          <h1 className="animate-in-up mt-5 text-[2.5rem] sm:text-[3.5rem] lg:text-[4rem]">
+            {m.headline} {m.headlineAccent}
+          </h1>
+
+          <p className="animate-in-up mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-fg-muted">
+            {m.subheadline}
+          </p>
+
+          <div className="animate-in-up mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button asChild size="lg" className="w-full sm:w-auto">
+              <Link href={`/registro?rubro=${preset.key}`}>
+                Empezar gratis
+                <ArrowRight />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+              <a
+                href={whatsappLink(
+                  `Hola, quiero ver ${site.name} para mi negocio.`,
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver una demo
+              </a>
+            </Button>
+          </div>
+
+          <p className="animate-in-up mt-5 text-sm text-fg-subtle">
+            {site.trialDays} días gratis · sin tarjeta · listo en 5 minutos
+          </p>
         </div>
 
-        <div className="grid gap-12 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-20">
-          <div className="max-w-2xl">
-            <h1 className="text-[2.75rem] leading-[1.02] sm:text-[3.5rem] lg:text-[4rem]">
-              {m.headline}{" "}
-              <em className="not-italic text-accent">{m.headlineAccent}</em>
-            </h1>
-
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-fg-muted">
-              {m.subheadline}
-            </p>
-
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <Button asChild size="lg">
-                <Link href={`/registro?rubro=${preset.key}`}>
-                  Abrir mi cuenta
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <a
-                  href={whatsappLink(
-                    `Hola, quiero ver ${site.name} funcionando para mi negocio.`,
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Verlo por WhatsApp
-                </a>
-              </Button>
-            </div>
-
-            {/* Datos duros en formato de campos, no de píldoras decorativas */}
-            <dl className="mt-11 grid grid-cols-2 gap-x-8 gap-y-5 border-t border-border pt-7 sm:grid-cols-3">
-              {[
-                { k: "Puesta en marcha", v: "5 minutos" },
-                { k: "Tarjeta de crédito", v: "No hace falta" },
-                { k: "Tus datos", v: "Exportables siempre" },
-              ].map((item) => (
-                <div key={item.k}>
-                  <dt className="label">{item.k}</dt>
-                  <dd className="mt-1.5 text-[0.9375rem]">{item.v}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <div className="animate-rise lg:pt-6">
-            <WorkOrderSheet preset={preset} />
-          </div>
+        <div className="animate-in-up mx-auto mt-16 max-w-5xl">
+          <AppPreview preset={preset} />
         </div>
       </Container>
     </section>
   );
 }
 
-/* ════════════════════════════════════════════════════════════════
-   DOLORES — presentados como el listado de verificación de un formulario
-   ════════════════════════════════════════════════════════════════ */
+// ── EL PROBLEMA ───────────────────────────────────────────────────
 
 export function PainPoints({ preset }: { preset: IndustryPreset }) {
   return (
-    <section className="border-b border-rule py-20">
+    <section className="border-b border-border py-20 sm:py-24">
       <Container>
-        <SectionHeading
-          ordinal="01"
-          eyebrow="El problema"
-          title="Marcá las que te pasaron esta semana"
-          description="Si tildás dos o más, no tenés un problema de esfuerzo: tenés un problema de sistema."
-        />
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="eyebrow">El problema</p>
+          <h2 className="mt-4 text-3xl sm:text-4xl">
+            Si algo de esto te suena, es para vos
+          </h2>
+        </div>
 
-        <ul className="mt-12 border-t border-border">
-          {preset.marketing.painPoints.map((pain, i) => (
-            <li
-              key={pain.title}
-              className="grid gap-3 border-b border-border py-6 sm:grid-cols-[3rem_1fr_1.1fr] sm:gap-8"
-            >
-              {/* Casilla de verificación tildada: el gesto del formulario */}
-              <span
-                aria-hidden
-                className="flex size-7 items-center justify-center border border-fg text-accent"
-              >
-                <svg viewBox="0 0 16 16" className="size-4" fill="none">
-                  <path
-                    d="M3 8.5 6.5 12 13 4"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <span className="sr-only">Punto {i + 1}</span>
+        <div className="mx-auto mt-14 grid max-w-5xl gap-x-12 gap-y-10 sm:grid-cols-2">
+          {preset.marketing.painPoints.map((pain) => (
+            <div key={pain.title} className="flex gap-4">
+              <span className="mt-1 flex size-6 shrink-0 items-center justify-center rounded-full bg-danger-soft text-danger">
+                <X className="size-3.5" strokeWidth={2.5} />
               </span>
-              <h3 className="text-xl leading-snug">{pain.title}</h3>
-              <p className="text-[0.9375rem] leading-relaxed text-fg-muted">
-                {pain.detail}
-              </p>
-            </li>
+              <div>
+                <h3 className="text-base">{pain.title}</h3>
+                <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-fg-muted">
+                  {pain.detail}
+                </p>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </Container>
     </section>
   );
 }
 
-/* ════════════════════════════════════════════════════════════════
-   RECORRIDO
-   ════════════════════════════════════════════════════════════════ */
+// ── CÓMO FUNCIONA ─────────────────────────────────────────────────
 
 export function HowItWorks({ preset }: { preset: IndustryPreset }) {
   const steps = [
     {
-      n: "01",
       title: "Elegís tu rubro",
-      detail: `Marcás «${preset.name}» al registrarte y el sistema queda con tus estados, tus campos y tu vocabulario. No configurás nada a mano.`,
+      detail: `Marcás «${preset.name}» al registrarte y el sistema queda configurado con tus estados, tus campos y tus documentos.`,
     },
     {
-      n: "02",
-      title: "Cargás lo que tenés abierto",
+      title: "Cargás tu trabajo del día",
       detail:
-        "Cliente, detalle y listo. Aparece en el tablero y todo el equipo lo ve al instante, desde la computadora o el celular.",
+        "Cliente, detalle y listo. Aparece en el tablero y lo ve todo el equipo, desde la computadora o el celular.",
     },
     {
-      n: "03",
       title: "Tu cliente aprueba desde el celular",
       detail:
-        "Generás el presupuesto, lo mandás por WhatsApp y el cliente toca aprobar. A vos te llega el aviso en el momento.",
+        "Le mandás el presupuesto por WhatsApp, lo aprueba con un toque y a vos te llega el aviso al instante.",
     },
   ];
 
@@ -173,40 +134,146 @@ export function HowItWorks({ preset }: { preset: IndustryPreset }) {
     .replace(/\{\{[^}]+\}\}/g, "el enlace");
 
   return (
-    <section id="recorrido" className="border-b border-rule bg-bg-subtle py-20">
+    <section id="recorrido" className="border-b border-border bg-bg-subtle py-20 sm:py-24">
       <Container>
-        <SectionHeading
-          ordinal="02"
-          eyebrow="Recorrido"
-          title="Andando en menos de lo que dura un café"
-          description="No hay implementación, ni consultores, ni semanas de configuración."
-        />
+        <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
+          <div>
+            <p className="eyebrow">Cómo funciona</p>
+            <h2 className="mt-4 text-3xl sm:text-4xl">
+              Andando en menos de lo que dura un café
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-fg-muted">
+              No hay implementación, ni consultores, ni semanas de
+              configuración.
+            </p>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-          <ol className="border-t border-border">
-            {steps.map((step) => (
-              <li
-                key={step.n}
-                className="grid gap-2 border-b border-border py-7 sm:grid-cols-[4rem_1fr] sm:gap-8"
-              >
-                <span className="ordinal text-2xl text-accent">{step.n}</span>
-                <div>
-                  <h3 className="text-xl">{step.title}</h3>
-                  <p className="mt-2 max-w-lg text-[0.9375rem] leading-relaxed text-fg-muted">
-                    {step.detail}
-                  </p>
+            <ol className="mt-10 space-y-8">
+              {steps.map((step, i) => (
+                <li key={step.title} className="flex gap-4">
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-accent-border bg-accent-soft text-sm font-semibold text-accent">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h3 className="text-base">{step.title}</h3>
+                    <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-fg-muted">
+                      {step.detail}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <MessagePreview message={sample ?? ""} />
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+// ── FUNCIONES ─────────────────────────────────────────────────────
+
+export function Features({ preset }: { preset: IndustryPreset }) {
+  return (
+    <section className="border-b border-border py-20 sm:py-24">
+      <Container>
+        <div className="max-w-2xl">
+          <p className="eyebrow">Lo que incluye</p>
+          <h2 className="mt-4 text-3xl sm:text-4xl">
+            Pensado para {preset.marketing.audience}
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-fg-muted">
+            Todo lo que necesitás para trabajar ordenado. Nada de lo que no vas
+            a usar nunca.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {preset.marketing.features.map((feature) => {
+            const Icon = ICONS[feature.icon] ?? LayoutGrid;
+            return (
+              <div key={feature.title}>
+                <span className="flex size-9 items-center justify-center rounded-lg border border-border bg-surface text-accent shadow-[var(--shadow-xs)]">
+                  <Icon className="size-4" />
+                </span>
+                <h3 className="mt-4 text-base">{feature.title}</h3>
+                <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-fg-muted">
+                  {feature.detail}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+// ── A TU MEDIDA ───────────────────────────────────────────────────
+
+export function Configurable({ preset }: { preset: IndustryPreset }) {
+  const statuses = preset.statuses.filter((s) => s.kind !== "CANCELLED");
+
+  return (
+    <section className="border-b border-border bg-bg-subtle py-20 sm:py-24">
+      <Container>
+        <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
+          <div>
+            <p className="eyebrow">A tu medida</p>
+            <h2 className="mt-4 text-3xl sm:text-4xl">
+              Se adapta a cómo trabajás vos
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-fg-muted">
+              La mayoría de los sistemas te obliga a cambiar tu forma de
+              trabajar. Este se acomoda a la tuya, y lo configurás vos mismo sin
+              llamar a nadie.
+            </p>
+
+            <ul className="mt-8 space-y-3">
+              {[
+                `Acá el trabajo se llama ${preset.vocabulary.jobSingular.toLowerCase()}, no «ticket»`,
+                preset.customFields.length > 0
+                  ? `Campos propios: ${preset.customFields.slice(0, 3).map((f) => f.label).join(", ")}`
+                  : "Agregás los campos que tu rubro necesite",
+                `Métodos de cobro: ${preset.paymentMethods.slice(0, 4).join(", ")}`,
+                "Documentos con tu logo y tus datos",
+              ].map((line) => (
+                <li key={line} className="flex gap-3">
+                  <Check className="mt-0.5 size-4 shrink-0 text-accent" strokeWidth={2.5} />
+                  <span className="text-[0.9375rem] text-fg-muted">{line}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="card overflow-hidden">
+            <div className="border-b border-border px-5 py-3.5">
+              <h3 className="text-sm">Configuración · Estados</h3>
+            </div>
+            <ul className="space-y-2 p-4">
+              {statuses.map((status) => (
+                <li
+                  key={status.name}
+                  className="flex items-center gap-3 rounded-lg border border-border bg-bg-subtle px-3.5 py-2.5"
+                >
+                  <span className="flex flex-col gap-[3px] text-fg-subtle">
+                    <span className="block h-px w-3 bg-current" />
+                    <span className="block h-px w-3 bg-current" />
+                    <span className="block h-px w-3 bg-current" />
+                  </span>
+                  <span
+                    className="size-2.5 shrink-0 rounded-full"
+                    style={{ backgroundColor: status.color }}
+                  />
+                  <span className="text-sm">{status.name}</span>
+                </li>
+              ))}
+              <li>
+                <div className="rounded-lg border border-dashed border-border px-3.5 py-2.5 text-sm text-fg-subtle">
+                  + Agregar estado
                 </div>
               </li>
-            ))}
-          </ol>
-
-          <div>
-            <p className="label mb-4">Lo que recibe tu cliente</p>
-            <WhatsappNote message={sample ?? ""} />
-            <p className="mt-4 text-sm leading-relaxed text-fg-subtle">
-              Sale de tu propio número, con el texto ya armado. Un toque y listo:
-              el cliente recibe el mensaje del contacto que ya conoce.
-            </p>
+            </ul>
           </div>
         </div>
       </Container>
@@ -214,211 +281,93 @@ export function HowItWorks({ preset }: { preset: IndustryPreset }) {
   );
 }
 
-/* ════════════════════════════════════════════════════════════════
-   FUNCIONES — retícula de filetes, sin tarjetas ni sombras
-   ════════════════════════════════════════════════════════════════ */
-
-export function Features({ preset }: { preset: IndustryPreset }) {
-  return (
-    <section className="border-b border-rule py-20">
-      <Container>
-        <SectionHeading
-          ordinal="03"
-          eyebrow="Alcance"
-          title={`Pensado para ${preset.marketing.audience}`}
-          description="Todo lo que necesitás para trabajar ordenado. Nada de lo que no vas a usar nunca."
-        />
-
-        <div className="mt-12 grid border-t border-l border-border sm:grid-cols-2 lg:grid-cols-3">
-          {preset.marketing.features.map((feature, i) => (
-            <article
-              key={feature.title}
-              className="border-b border-r border-border p-7"
-            >
-              <span className="ordinal text-[0.6875rem] text-accent">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-4 text-lg leading-snug">{feature.title}</h3>
-              <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-fg-muted">
-                {feature.detail}
-              </p>
-            </article>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-/* ════════════════════════════════════════════════════════════════
-   CONFIGURABILIDAD
-   ════════════════════════════════════════════════════════════════ */
-
-export function Configurable({ preset }: { preset: IndustryPreset }) {
-  const fields = preset.customFields.slice(0, 8);
-
-  return (
-    <section className="border-b border-rule bg-bg-subtle py-20">
-      <Container>
-        <SectionHeading
-          ordinal="04"
-          eyebrow="A tu medida"
-          title="Se acomoda a cómo trabajás vos"
-          description="Los sistemas genéricos te obligan a cambiar tu forma de trabajar. Este se adapta a la tuya, y lo cambiás vos mismo sin llamar a nadie."
-        />
-
-        <dl className="mt-12 border-t border-border">
-          <ConfigRow label="Tu recorrido">
-            <StatusFlow preset={preset} />
-          </ConfigRow>
-
-          {fields.length > 0 && (
-            <ConfigRow label="Tus campos">
-              <div className="flex flex-wrap gap-2">
-                {fields.map((field) => (
-                  <span
-                    key={field.key}
-                    className="border border-border px-2.5 py-1 text-[0.8125rem]"
-                  >
-                    {field.label}
-                  </span>
-                ))}
-              </div>
-            </ConfigRow>
-          )}
-
-          <ConfigRow label="Tu vocabulario">
-            <p className="text-[0.9375rem]">
-              Acá se llama{" "}
-              <strong className="font-medium">
-                {preset.vocabulary.jobSingular.toLowerCase()}
-              </strong>
-              {preset.vocabulary.useAssets && (
-                <>
-                  {" "}y{" "}
-                  <strong className="font-medium">
-                    {preset.vocabulary.assetSingular.toLowerCase()}
-                  </strong>
-                </>
-              )}
-              , no «ticket» ni «entidad».
-            </p>
-          </ConfigRow>
-
-          <ConfigRow label="Tus documentos">
-            <p className="text-[0.9375rem]">
-              {preset.documentTemplates.map((t) => t.name).join(" · ")}
-            </p>
-          </ConfigRow>
-
-          <ConfigRow label="Tus cobros">
-            <p className="text-[0.9375rem]">
-              {preset.paymentMethods.join(" · ")}
-            </p>
-          </ConfigRow>
-        </dl>
-      </Container>
-    </section>
-  );
-}
-
-function ConfigRow({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="grid gap-3 border-b border-border py-6 sm:grid-cols-[10rem_1fr] sm:gap-8">
-      <dt className="label pt-1">{label}</dt>
-      <dd>{children}</dd>
-    </div>
-  );
-}
-
-/* ════════════════════════════════════════════════════════════════
-   PRECIOS — tarifario impreso, no tres tarjetas flotantes
-   ════════════════════════════════════════════════════════════════ */
+// ── PRECIOS ───────────────────────────────────────────────────────
 
 export function Pricing({ compact = false }: { compact?: boolean }) {
   return (
-    <section id="precios" className="border-b border-rule py-20">
+    <section id="precios" className="border-b border-border py-20 sm:py-24">
       <Container>
-        <SectionHeading
-          ordinal="05"
-          eyebrow="Tarifario"
-          title="Claro, en dólares, sin letra chica"
-          description={`Probás ${site.trialDays} días sin poner tarjeta. Si no te sirve, no pagás nada y te llevás tus datos.`}
-        />
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="eyebrow">Precios</p>
+          <h2 className="mt-4 text-3xl sm:text-4xl">Claro y en dólares</h2>
+          <p className="mt-5 text-lg leading-relaxed text-fg-muted">
+            Probás {site.trialDays} días sin poner tarjeta. Si no te sirve, no
+            pagás nada y te llevás tus datos.
+          </p>
+        </div>
 
-        <div className="mt-12 grid border-t border-l border-border lg:grid-cols-3">
+        <div className="mx-auto mt-14 grid max-w-5xl gap-6 lg:grid-cols-3">
           {PLANS.map((plan) => (
             <div
               key={plan.code}
               className={cn(
-                "flex flex-col border-b border-r border-border p-7",
-                plan.highlighted && "bg-surface",
+                "relative flex flex-col rounded-xl border bg-surface p-7",
+                plan.highlighted
+                  ? "border-accent shadow-[var(--shadow-md)]"
+                  : "border-border shadow-[var(--shadow-xs)]",
               )}
             >
-              <div className="flex items-baseline justify-between gap-3">
-                <h3 className="font-display text-2xl">{plan.name}</h3>
-                {plan.highlighted && (
-                  <span className="label text-accent">Más elegido</span>
-                )}
-              </div>
+              {plan.highlighted && (
+                <span className="absolute -top-3 left-7 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-fg">
+                  El más elegido
+                </span>
+              )}
 
-              <p className="mt-2 min-h-10 text-sm text-fg-muted">
+              <h3 className="text-lg">{plan.name}</h3>
+              <p className="mt-1.5 min-h-10 text-sm text-fg-muted">
                 {plan.tagline}
               </p>
 
-              <p className="ordinal mt-6 text-4xl">
-                {formatMoney(plan.priceCents, plan.currency, "en-US")}
-                <span className="ml-1.5 font-sans text-sm text-fg-muted">
-                  /mes
+              <p className="mt-6 flex items-baseline gap-1.5">
+                <span className="text-4xl font-semibold tracking-tight">
+                  {formatMoney(plan.priceCents, plan.currency, "en-US").replace(
+                    ".00",
+                    "",
+                  )}
                 </span>
+                <span className="text-sm text-fg-muted">/mes</span>
               </p>
-              <p className="label mt-2">
-                Anual {formatMoney(yearlyCents(plan), plan.currency, "en-US")} ·
-                2 meses libres
+              <p className="mt-1.5 text-xs text-fg-subtle">
+                o{" "}
+                {formatMoney(yearlyCents(plan), plan.currency, "en-US").replace(
+                  ".00",
+                  "",
+                )}{" "}
+                al año · 2 meses gratis
               </p>
 
               <Button
                 asChild
-                className="mt-7 w-full"
+                className="mt-6 w-full"
                 variant={plan.highlighted ? "primary" : "outline"}
               >
-                <Link href={`/registro?plan=${plan.code}`}>Empezar</Link>
+                <Link href={`/registro?plan=${plan.code}`}>Empezar gratis</Link>
               </Button>
 
               <ul className="mt-7 space-y-2.5 border-t border-border pt-6">
                 {(compact ? plan.features.slice(0, 6) : plan.features).map(
                   (feature) => (
-                    <li
-                      key={feature}
-                      className="flex gap-2.5 text-[0.9375rem] leading-snug"
-                    >
-                      <span className="mt-2 size-1 shrink-0 bg-accent" aria-hidden />
+                    <li key={feature} className="flex gap-2.5 text-sm">
+                      <Check
+                        className="mt-0.5 size-4 shrink-0 text-accent"
+                        strokeWidth={2.5}
+                      />
                       <span className="text-fg-muted">{feature}</span>
                     </li>
                   ),
                 )}
               </ul>
 
-              <p className="label mt-auto pt-6">
+              <p className="mt-auto pt-6 text-xs text-fg-subtle">
                 {isUnlimited(plan.maxUsers)
                   ? "Usuarios ilimitados"
-                  : `${plan.maxUsers} usuarios`}{" "}
-                ·{" "}
-                {isUnlimited(plan.maxJobsMonth)
-                  ? "sin tope mensual"
-                  : `${plan.maxJobsMonth}/mes`}
+                  : `Hasta ${plan.maxUsers} usuarios`}
               </p>
             </div>
           ))}
         </div>
 
-        <p className="mt-8 max-w-2xl text-[0.9375rem] leading-relaxed text-fg-muted">
+        <p className="mx-auto mt-10 max-w-xl text-center text-sm text-fg-muted">
           Aceptamos transferencia, pago móvil, Zelle y USDT. Si sos de los
           primeros clientes, te queda un{" "}
           <strong className="font-medium text-fg">
@@ -431,88 +380,75 @@ export function Pricing({ compact = false }: { compact?: boolean }) {
   );
 }
 
-/* ════════════════════════════════════════════════════════════════
-   PREGUNTAS
-   ════════════════════════════════════════════════════════════════ */
+// ── PREGUNTAS ─────────────────────────────────────────────────────
 
 export function Faq({ preset }: { preset: IndustryPreset }) {
   return (
-    <section className="border-b border-rule bg-bg-subtle py-20">
+    <section className="border-b border-border bg-bg-subtle py-20 sm:py-24">
       <Container>
-        <SectionHeading ordinal="06" eyebrow="Consultas" title="Lo que suelen preguntar" />
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="eyebrow">Dudas</p>
+            <h2 className="mt-4 text-3xl sm:text-4xl">Preguntas frecuentes</h2>
+          </div>
 
-        <div className="mt-12 border-t border-border">
-          {preset.marketing.faq.map((item, i) => (
-            <details key={i} className="group border-b border-border py-5">
-              <summary className="grid cursor-pointer list-none grid-cols-[2.5rem_1fr_1.5rem] items-baseline gap-3 text-lg">
-                <span className="ordinal text-[0.6875rem] text-accent">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span>{item.q}</span>
-                <span
-                  className="justify-self-end text-fg-subtle transition-transform group-open:rotate-45"
-                  aria-hidden
-                >
-                  <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M8 3v10M3 8h10" strokeLinecap="round" />
-                  </svg>
-                </span>
-              </summary>
-              <p className="mt-3 max-w-2xl pl-[3.25rem] text-[0.9375rem] leading-relaxed text-fg-muted">
-                {item.a}
-              </p>
-            </details>
-          ))}
+          <div className="mt-12 divide-y divide-border overflow-hidden rounded-xl border border-border bg-surface">
+            {preset.marketing.faq.map((item, i) => (
+              <details key={i} className="group px-6 py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-medium">
+                  {item.q}
+                  <span
+                    className="shrink-0 text-fg-subtle transition-transform group-open:rotate-45"
+                    aria-hidden
+                  >
+                    <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+                      <path d="M8 3v10M3 8h10" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </summary>
+                <p className="mt-3 text-[0.9375rem] leading-relaxed text-fg-muted">
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
         </div>
       </Container>
     </section>
   );
 }
 
-/* ════════════════════════════════════════════════════════════════
-   CIERRE
-   ════════════════════════════════════════════════════════════════ */
+// ── CIERRE ────────────────────────────────────────────────────────
 
 export function FinalCta({ preset }: { preset: IndustryPreset }) {
   return (
-    <section className="border-b border-rule py-20">
+    <section className="py-20 sm:py-28">
       <Container>
-        <div className="grid gap-10 border border-rule p-8 sm:p-12 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
-          <div>
-            <span className="label">Última sección</span>
-            <h2 className="mt-4 max-w-xl text-3xl sm:text-[2.5rem]">
-              Probalo con tus propios datos.{" "}
-              <em className="not-italic text-accent">
-                Si no te sirve, no pagás nada.
-              </em>
-            </h2>
-            <p className="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-fg-muted">
-              {site.trialDays} días completos, sin tarjeta y sin compromiso. Si
-              querés, te ayudamos a cargar tus clientes el primer día.
-            </p>
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl sm:text-4xl">
+            Probalo con tus propios datos
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-fg-muted">
+            {site.trialDays} días completos, sin tarjeta y sin compromiso. Si
+            querés, te ayudamos a cargar tus clientes el primer día.
+          </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link href={`/registro?rubro=${preset.key}`}>
-                  Abrir mi cuenta
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <a
-                  href={whatsappLink(`Hola, tengo una consulta sobre ${site.name}.`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Hablar por WhatsApp
-                </a>
-              </Button>
-            </div>
-          </div>
-
-          <div className="flex justify-center lg:justify-end">
-            <span className="stamp rotate-[-7deg] px-6 py-3 text-xl">
-              Sin tarjeta
-            </span>
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button asChild size="lg" className="w-full sm:w-auto">
+              <Link href={`/registro?rubro=${preset.key}`}>
+                Crear mi cuenta gratis
+                <ArrowRight />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+              <a
+                href={whatsappLink(`Hola, tengo una consulta sobre ${site.name}.`)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Hablar por WhatsApp
+              </a>
+            </Button>
           </div>
         </div>
       </Container>
@@ -520,9 +456,7 @@ export function FinalCta({ preset }: { preset: IndustryPreset }) {
   );
 }
 
-/* ════════════════════════════════════════════════════════════════
-   ÍNDICE DE RUBROS — enlazado interno para SEO, en clave de índice impreso
-   ════════════════════════════════════════════════════════════════ */
+// ── OTROS RUBROS ──────────────────────────────────────────────────
 
 export function RelatedIndustries({
   current,
@@ -534,26 +468,22 @@ export function RelatedIndustries({
   const others = presets.filter((p) => p.key !== current);
 
   return (
-    <section className="py-16">
+    <section className="border-t border-border py-14">
       <Container>
-        <p className="label border-b border-border pb-3">
-          También funciona para
+        <p className="text-center text-sm text-fg-muted">
+          También funciona para estos rubros
         </p>
-        <ul className="grid sm:grid-cols-2 lg:grid-cols-3">
-          {others.map((preset, i) => (
-            <li key={preset.key} className="border-b border-border">
-              <Link
-                href={presetPath(preset)}
-                className="flex items-baseline gap-3 py-3.5 transition-colors hover:text-accent"
-              >
-                <span className="ordinal text-[0.6875rem] text-accent">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="text-[0.9375rem]">{preset.name}</span>
-              </Link>
-            </li>
+        <div className="mt-6 flex flex-wrap justify-center gap-2.5">
+          {others.map((preset) => (
+            <Link
+              key={preset.key}
+              href={presetPath(preset)}
+              className="rounded-full border border-border px-4 py-2 text-sm text-fg-muted transition-colors hover:border-border-strong hover:text-fg"
+            >
+              {preset.name}
+            </Link>
           ))}
-        </ul>
+        </div>
       </Container>
     </section>
   );

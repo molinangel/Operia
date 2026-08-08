@@ -171,7 +171,7 @@ export function JobItems({
   const pending_ = totals.totalCents - totals.paidCents;
 
   return (
-    <section className="rounded-[2px] border border-border bg-surface">
+    <section className="rounded-xl border border-border bg-surface">
       <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
         <h2 className="text-sm font-semibold">Servicios y repuestos</h2>
         {canEdit && !adding && (

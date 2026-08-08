@@ -3,90 +3,91 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ══════════════════════════════════════════════════════════════════
-   OPERIA — sistema de diseño «parte de trabajo»
+   OPERIA — sistema de diseño
 
-   La idea rectora: el producto reemplaza el papel donde el negocio anota
-   la orden. Así que la interfaz está compuesta como ese formulario —
-   papel cálido, tinta, filetes de un pixel, etiquetas en monoespaciada,
-   secciones numeradas y un sello rojo.
+   Minimalista, claro y profesional. La jerarquía la hacen el espacio y
+   la tipografía, no la decoración.
 
-   Prohibido en esta hoja de estilos: degradados decorativos, sombras
-   difusas de colores, esquinas muy redondeadas, resplandores. Nada de eso
-   existe en un documento impreso y es lo que hace que una web parezca
-   una plantilla más.
+   Reglas del sistema:
+   · Un solo color de acento, usado poco: acción principal, estado
+     activo y dato clave. Nada más.
+   · Neutros fríos y limpios. Ni beige ni sepia.
+   · Sombras de una sola capa, muy suaves. Sirven para separar planos,
+     no para adornar.
+   · Nada de degradados, resplandores, texturas ni patrones de fondo.
    ══════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Papel */
-  --bg: #f4f1ea;
-  --bg-subtle: #eae5da;
-  --surface: #fdfcf9;
-  --surface-2: #f0ece2;
+  --bg: #ffffff;
+  --bg-subtle: #f7f8f9;
+  --surface: #ffffff;
+  --surface-2: #f2f4f5;
 
-  /* Filetes: la unidad estructural del sistema */
-  --border: #d9d2c3;
-  --border-strong: #b3a892;
-  --rule: #1a1713;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
 
-  /* Tinta */
-  --fg: #1a1713;
-  --fg-muted: #5b544a;
-  --fg-subtle: #8b8275;
+  --fg: #0c0e12;
+  --fg-muted: #565d6b;
+  --fg-subtle: #8b919d;
 
-  /* Sello */
-  --accent: #b02a1f;
-  --accent-hover: #8f2018;
-  --accent-fg: #fdfcf9;
-  --accent-soft: #f7e6e2;
-  --accent-ring: rgba(176, 42, 31, 0.28);
+  /* Verde profundo: serio, poco visto como color principal y con buen
+     contraste sobre blanco. Se distingue del verde de WhatsApp. */
+  --accent: #0f6b46;
+  --accent-hover: #0b5537;
+  --accent-fg: #ffffff;
+  --accent-soft: #e9f3ee;
+  --accent-border: #b9dbcb;
 
-  /* Semánticos, en clave de tinta de sello */
-  --success: #2f6b3d;
-  --success-soft: #e6efe6;
-  --warning: #9a6b12;
-  --warning-soft: #f7edd8;
-  --danger: #b02a1f;
-  --danger-soft: #f7e6e2;
-  --info: #2a4d78;
-  --info-soft: #e3eaf3;
+  --success: #0f6b46;
+  --success-soft: #e9f3ee;
+  --warning: #9a6212;
+  --warning-soft: #fdf3e4;
+  --danger: #b42318;
+  --danger-soft: #fdeceb;
+  --info: #1c4ed8;
+  --info-soft: #eaf0fe;
 
-  /* Radio mínimo: los documentos tienen esquinas, no burbujas */
-  --radius: 2px;
-  --shadow-sm: none;
-  --shadow-md: 0 1px 0 var(--border);
-  --shadow-lg: 0 12px 32px -18px rgba(26, 23, 19, 0.45);
+  --radius: 0.625rem;
+  --radius-sm: 0.375rem;
+
+  --shadow-xs: 0 1px 2px rgba(12, 14, 18, 0.05);
+  --shadow-sm: 0 1px 3px rgba(12, 14, 18, 0.07), 0 1px 2px rgba(12, 14, 18, 0.04);
+  --shadow-md: 0 4px 12px rgba(12, 14, 18, 0.07);
+  --shadow-lg: 0 16px 40px -12px rgba(12, 14, 18, 0.16);
 }
 
 .dark {
-  --bg: #131211;
-  --bg-subtle: #0d0c0b;
-  --surface: #1c1a18;
-  --surface-2: #232120;
+  --bg: #0b0d10;
+  --bg-subtle: #101317;
+  --surface: #14171c;
+  --surface-2: #1b1f25;
 
-  --border: #35312c;
-  --border-strong: #4d4740;
-  --rule: #e8e3d9;
+  --border: #262b32;
+  --border-strong: #363c45;
 
-  --fg: #ece7dd;
-  --fg-muted: #a49c8f;
-  --fg-subtle: #7a7267;
+  --fg: #f0f2f4;
+  --fg-muted: #9aa2ae;
+  --fg-subtle: #6e7683;
 
-  --accent: #e0524a;
-  --accent-hover: #ef665e;
-  --accent-fg: #131211;
-  --accent-soft: #2e1a18;
-  --accent-ring: rgba(224, 82, 74, 0.3);
+  --accent: #29a874;
+  --accent-hover: #35bd84;
+  --accent-fg: #04150d;
+  --accent-soft: #10241b;
+  --accent-border: #1d4a36;
 
-  --success: #6aa877;
-  --success-soft: #17251a;
-  --warning: #d3a541;
-  --warning-soft: #2a2214;
-  --danger: #e0524a;
-  --danger-soft: #2e1a18;
-  --info: #7fa3ce;
-  --info-soft: #16202c;
+  --success: #29a874;
+  --success-soft: #10241b;
+  --warning: #d9a441;
+  --warning-soft: #251d10;
+  --danger: #f0685c;
+  --danger-soft: #2a1513;
+  --info: #6b93f5;
+  --info-soft: #131c2e;
 
-  --shadow-lg: 0 12px 32px -18px rgba(0, 0, 0, 0.8);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 40px -12px rgba(0, 0, 0, 0.7);
 }
 
 @theme inline {
@@ -96,7 +97,6 @@
   --color-surface-2: var(--surface-2);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
-  --color-rule: var(--rule);
 
   --color-fg: var(--fg);
   --color-fg-muted: var(--fg-muted);
@@ -106,6 +106,7 @@
   --color-accent-hover: var(--accent-hover);
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-border: var(--accent-border);
 
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
@@ -117,7 +118,6 @@
   --color-info-soft: var(--info-soft);
 
   --font-sans: var(--font-sans-base);
-  --font-display: var(--font-display-base);
   --font-mono: var(--font-mono-base);
 
   --radius-DEFAULT: var(--radius);
@@ -137,20 +137,31 @@
     color: var(--fg);
     font-family: var(--font-sans-base), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3 {
-    font-family: var(--font-display-base), Georgia, serif;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.02;
+  /*
+    Escala tipográfica cerrada. En titulares grandes el tracking se aprieta:
+    es lo que separa una jerarquía cuidada de una por defecto.
+  */
+  h1 {
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
     text-wrap: balance;
   }
 
-  h4, h5, h6 {
-    font-family: var(--font-sans-base), sans-serif;
-    letter-spacing: -0.01em;
+  h2 {
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  h3, h4 {
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
   }
 
   p {
@@ -158,89 +169,47 @@
   }
 
   ::selection {
-    background: var(--accent);
-    color: var(--accent-fg);
+    background: var(--accent-soft);
+    color: var(--accent);
   }
 
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 
 @layer components {
-  /**
-   * Etiqueta de campo de formulario. Es el conector tipográfico de todo el
-   * sistema: cada dato del sitio se presenta como un campo rotulado.
-   */
-  .label {
-    font-family: var(--font-mono-base), monospace;
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--fg-subtle);
-  }
-
-  /** Numeral de sección, como el ordinal impreso de un formulario. */
-  .ordinal {
-    font-family: var(--font-mono-base), monospace;
-    font-variant-numeric: tabular-nums;
+  /** Antetítulo de sección. Discreto, en mayúsculas, con el acento. */
+  .eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 600;
     letter-spacing: 0.02em;
-  }
-
-  /**
-   * Papel milimetrado tenue. Se usa muy poco y muy claro: sugiere la hoja
-   * cuadriculada del taller sin convertirse en decoración.
-   */
-  .paper-grid {
-    background-image:
-      linear-gradient(to right, var(--border) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--border) 1px, transparent 1px);
-    background-size: 24px 24px;
-    opacity: 0.4;
-  }
-
-  /** Borde perforado, como el de un talonario. */
-  .perforated {
-    background-image: repeating-linear-gradient(
-      to bottom,
-      var(--border-strong) 0 4px,
-      transparent 4px 9px
-    );
-    background-size: 1px 100%;
-    background-repeat: no-repeat;
-  }
-
-  /** Sello de goma. Rotado y con el borde grueso, como el de verdad. */
-  .stamp {
-    font-family: var(--font-mono-base), monospace;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
     color: var(--accent);
-    border: 2px solid var(--accent);
-    opacity: 0.85;
+  }
+
+  /** Superficie elevada estándar de todo el sitio. */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-xs);
   }
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+/* Aparición breve, solo en la portada. */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
 }
 
-.animate-rise {
-  animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+.animate-in-up {
+  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -248,17 +217,11 @@
   }
 }
 
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-subtle);
-}
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
   background: var(--border-strong);
-  border: 4px solid var(--bg-subtle);
+  border-radius: 999px;
+  border: 4px solid var(--bg);
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--fg-subtle);
-}
+::-webkit-scrollbar-thumb:hover { background: var(--fg-subtle); }

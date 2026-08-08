@@ -2,99 +2,88 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Container, SectionHeading } from "@/components/ui/primitives";
+import { ArrowRight } from "lucide-react";
+import { Container } from "@/components/ui/primitives";
 import { type IndustryPreset, presetPath } from "@/lib/presets";
 import { cn } from "@/lib/utils";
-import { StatusFlow, WorkOrderSheet } from "./work-order";
+import { AppPreview } from "./app-preview";
 
 /**
- * El argumento de venta más fuerte, hecho interactivo: el visitante toca su
- * rubro y ve el mismo sistema hablando su idioma.
+ * El visitante elige su rubro y ve el mismo sistema hablando su idioma:
+ * cambian los estados, los campos y hasta cómo se llaman las cosas.
  *
- * Se presenta como el índice de un expediente —columna de rubros numerada a la
- * izquierda, documento a la derecha—, no como una fila de pestañas con píldoras.
+ * Es el argumento de venta más fuerte del producto, y acá se demuestra en un
+ * clic en lugar de explicarlo en un párrafo.
  */
 export function IndustryShowcase({ presets }: { presets: IndustryPreset[] }) {
   const [active, setActive] = useState(presets[0]);
 
   return (
-    <section className="border-b border-rule py-20">
+    <section className="border-b border-border bg-bg-subtle py-20 sm:py-24">
       <Container>
-        <SectionHeading
-          ordinal="00"
-          eyebrow="Un sistema, tu rubro"
-          title="Elegí a qué te dedicás y mirá cómo queda"
-          description="Mismo sistema, configurado distinto. Cambian los estados, los campos, los documentos y hasta cómo se llaman las cosas."
-        />
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="eyebrow">Un sistema, tu rubro</p>
+          <h2 className="mt-4 text-3xl sm:text-4xl">
+            Elegí a qué te dedicás y mirá cómo queda
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-fg-muted">
+            Mismo sistema, configurado distinto. Cambian los estados, los
+            campos y los documentos.
+          </p>
+        </div>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[18rem_1fr] lg:gap-14">
-          {/* Índice de rubros */}
-          <div role="tablist" aria-label="Rubros" className="border-t border-border">
-            {presets.map((preset, i) => {
-              const selected = active.key === preset.key;
-              return (
-                <button
-                  key={preset.key}
-                  role="tab"
-                  aria-selected={selected}
-                  onClick={() => setActive(preset)}
-                  className={cn(
-                    "flex w-full items-baseline gap-3 border-b border-border py-3.5 text-left transition-colors",
-                    selected ? "text-accent" : "text-fg-muted hover:text-fg",
-                  )}
-                >
-                  <span className="ordinal text-[0.6875rem]">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="flex-1 text-[0.9375rem]">{preset.name}</span>
-                  {selected && (
-                    <span className="ordinal text-[0.6875rem]" aria-hidden>
-                      ←
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          <div>
-            <dl className="mb-8 grid gap-5 border-b border-border pb-8 sm:grid-cols-2">
-              <div>
-                <dt className="label">Su objeto de trabajo</dt>
-                <dd className="mt-1.5 font-display text-xl">
-                  {active.vocabulary.jobPlural}
-                  {active.vocabulary.useAssets && (
-                    <span className="text-fg-subtle">
-                      {" "}· {active.vocabulary.assetPlural}
-                    </span>
-                  )}
-                </dd>
-              </div>
-              <div>
-                <dt className="label">Sus campos propios</dt>
-                <dd className="mt-1.5 text-[0.9375rem] text-fg-muted">
-                  {active.customFields.length > 0
-                    ? active.customFields
-                        .slice(0, 4)
-                        .map((f) => f.label)
-                        .join(" · ")
-                    : "Ninguno: este rubro no los necesita"}
-                </dd>
-              </div>
-            </dl>
-
-            <p className="label mb-3">Su recorrido</p>
-            <StatusFlow preset={active} className="mb-10" />
-
-            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
-              <WorkOrderSheet preset={active} className="max-w-xl" />
-              <Link
-                href={presetPath(active)}
-                className="label whitespace-nowrap text-accent underline underline-offset-4 hover:decoration-2"
+        <div
+          role="tablist"
+          aria-label="Rubros"
+          className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-2"
+        >
+          {presets.map((preset) => {
+            const selected = active.key === preset.key;
+            return (
+              <button
+                key={preset.key}
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setActive(preset)}
+                className={cn(
+                  "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                  selected
+                    ? "border-accent bg-accent text-accent-fg"
+                    : "border-border bg-surface text-fg-muted hover:border-border-strong hover:text-fg",
+                )}
               >
-                Ver {active.name.toLowerCase()} en detalle →
-              </Link>
-            </div>
+                {preset.name}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mx-auto mt-10 max-w-5xl">
+          <AppPreview preset={active} />
+
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <p className="text-sm text-fg-muted">
+              Acá el trabajo se llama{" "}
+              <span className="font-medium text-fg">
+                {active.vocabulary.jobSingular.toLowerCase()}
+              </span>
+              {active.customFields.length > 0 && (
+                <>
+                  {" "}y sus campos son{" "}
+                  <span className="font-medium text-fg">
+                    {active.customFields.slice(0, 3).map((f) => f.label).join(", ")}
+                  </span>
+                </>
+              )}
+              .
+            </p>
+            <Link
+              href={presetPath(active)}
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
+            >
+              Ver {active.name.toLowerCase()} en detalle
+              <ArrowRight className="size-4" />
+            </Link>
           </div>
         </div>
       </Container>

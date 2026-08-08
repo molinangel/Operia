@@ -90,7 +90,7 @@ export default async function DashboardPage({
           </div>
 
           {/* Distribución por estado */}
-          <section className="rounded-[2px] border border-border bg-surface">
+          <section className="rounded-xl border border-border bg-surface">
             <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
               <h2 className="text-sm font-semibold">
                 {v.jobs} por estado
@@ -107,7 +107,7 @@ export default async function DashboardPage({
                 <Link
                   key={status.id}
                   href={`${base}/trabajos?estado=${status.id}`}
-                  className="flex items-center gap-3 rounded-[2px] border border-border bg-surface-2 px-3.5 py-3 transition hover:border-border-strong"
+                  className="flex items-center gap-3 rounded-xl border border-border bg-surface-2 px-3.5 py-3 transition hover:border-border-strong"
                 >
                   <span
                     className="size-2.5 shrink-0 rounded-full"
@@ -126,7 +126,7 @@ export default async function DashboardPage({
 
           <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
             {/* Actividad reciente */}
-            <section className="rounded-[2px] border border-border bg-surface">
+            <section className="rounded-xl border border-border bg-surface">
               <div className="border-b border-border px-5 py-3.5">
                 <h2 className="text-sm font-semibold">Movimiento reciente</h2>
               </div>
@@ -206,7 +206,7 @@ function QuickLink({
   return (
     <Link
       href={href}
-      className="flex items-center gap-3 rounded-[2px] border border-border bg-surface px-4 py-3.5 transition hover:border-border-strong"
+      className="flex items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3.5 transition hover:border-border-strong"
     >
       <span className="flex size-9 shrink-0 items-center justify-center rounded-[2px] bg-accent-soft text-accent">
         {icon}

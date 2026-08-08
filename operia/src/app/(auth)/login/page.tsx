@@ -27,7 +27,7 @@ export default async function LoginPage() {
         </p>
       </div>
 
-      <div className="mt-8 rounded-[2px] border border-border bg-surface p-6">
+      <div className="mt-8 rounded-xl border border-border bg-surface p-6">
         <LoginForm />
       </div>
 

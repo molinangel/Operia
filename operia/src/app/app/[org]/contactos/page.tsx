@@ -86,7 +86,7 @@ export default async function ContactsPage({ params, searchParams }: Props) {
               No encontramos contactos que coincidan con «{q}».
             </p>
           ) : (
-            <div className="overflow-hidden rounded-[2px] border border-border bg-surface">
+            <div className="overflow-hidden rounded-xl border border-border bg-surface">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-fg-subtle">

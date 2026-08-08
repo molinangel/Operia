@@ -87,7 +87,7 @@ export function AppShell({
         </button>
 
         {orgMenu && (
-          <div className="absolute inset-x-3 top-full z-30 mt-1 overflow-hidden rounded-[2px] border border-border bg-surface">
+          <div className="absolute inset-x-3 top-full z-30 mt-1 overflow-hidden rounded-xl border border-border bg-surface">
             {orgs.map((o) => (
               <Link
                 key={o.slug}

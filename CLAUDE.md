@@ -161,6 +161,20 @@ en servidor de las landings es el canal de captación del negocio. Ver docs/02.
 - **Tailwind:** usar los tokens (`bg-surface`, `text-fg-muted`, `border-border`),
   nunca colores crudos de Tailwind. El sistema tiene modo claro y oscuro.
 
+### Diseño
+
+El sistema es **minimalista, claro y profesional**. La jerarquía la hacen el
+espacio y la tipografía, no la decoración. Reglas:
+
+- **Un solo color de acento** (verde profundo), usado poco: acción principal,
+  estado activo y dato clave. Nada más.
+- **Neutros fríos y limpios.** Ni beige, ni sepia, ni fondos oscuros como base.
+- **Sombras de una capa y muy suaves.** Separan planos, no adornan.
+- **Prohibido:** degradados, resplandores, texturas, patrones de fondo,
+  tipografías de fantasía, elementos rotados y marcos de navegador.
+- El producto se muestra **derecho y limpio**, dibujado en HTML, sin
+  perspectiva ni mockups.
+
 ---
 
 ## 6. Comandos

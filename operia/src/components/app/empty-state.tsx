@@ -66,7 +66,7 @@ export function StatCard({
   };
 
   return (
-    <div className="rounded-[2px] border border-border bg-surface p-5">
+    <div className="rounded-xl border border-border bg-surface p-5">
       <p className="text-xs font-medium uppercase tracking-wide text-fg-subtle">
         {label}
       </p>

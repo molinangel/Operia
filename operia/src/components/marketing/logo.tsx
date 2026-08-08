@@ -2,34 +2,19 @@ import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /**
- * Marca. El isotipo es un documento con una esquina doblada y una línea de
- * sello: la orden de trabajo, que es de lo que trata el producto entero.
+ * Marca. Tres barras de distinta altura: las columnas del tablero, que es el
+ * concepto central del producto. Geométrica y simple, para que se lea bien a
+ * 20 píxeles y en blanco y negro.
  */
 export function Logo({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        className="h-full w-auto"
-        aria-hidden="true"
-      >
-        <path
-          d="M4 2h11l5 5v15H4V2Z"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinejoin="round"
-        />
-        <path d="M15 2v5h5" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-        <path d="M7.5 11.5h9M7.5 15h9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-        <path
-          d="M7.5 18.5h4.5"
-          stroke="var(--accent)"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-        />
+      <svg viewBox="0 0 24 24" fill="none" className="h-full w-auto" aria-hidden>
+        <rect x="2" y="9" width="5" height="11" rx="1.6" fill="currentColor" opacity="0.35" />
+        <rect x="9.5" y="5" width="5" height="15" rx="1.6" fill="currentColor" opacity="0.6" />
+        <rect x="17" y="2" width="5" height="18" rx="1.6" fill="var(--accent)" />
       </svg>
-      <span className="font-display text-[1.375rem] font-medium tracking-tight text-fg">
+      <span className="text-[1.1875rem] font-semibold tracking-[-0.02em]">
         {site.name}
       </span>
     </span>

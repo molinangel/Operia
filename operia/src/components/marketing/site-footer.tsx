@@ -4,25 +4,21 @@ import { LANDING_PRESETS, presetPath } from "@/lib/presets";
 import { site } from "@/lib/site";
 import { Logo } from "./logo";
 
-/** Pie compuesto como el reverso de un formulario: bloques ruleados y letra chica. */
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-rule">
+    <footer className="mt-auto border-t border-border bg-bg-subtle">
       <Container className="py-14">
-        <div className="grid gap-10 border-b border-border pb-10 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
           <div>
             <Logo className="h-6 w-auto" />
-            <p className="mt-5 max-w-sm text-[0.9375rem] leading-relaxed text-fg-muted">
-              El sistema que ordena tu negocio de servicios. Trabajos,
-              presupuestos, cobros y recordatorios, configurados para tu rubro.
-            </p>
-            <p className="label mt-6">
-              Hecho para Latinoamérica · precios en dólares
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-fg-muted">
+              El sistema que ordena tu negocio de servicios: trabajos,
+              presupuestos, cobros y recordatorios, configurado para tu rubro.
             </p>
           </div>
 
           <nav aria-labelledby="pie-rubros">
-            <h2 id="pie-rubros" className="label">
+            <h2 id="pie-rubros" className="text-sm font-medium">
               Por rubro
             </h2>
             <ul className="mt-4 space-y-2.5">
@@ -30,7 +26,7 @@ export function SiteFooter() {
                 <li key={preset.key}>
                   <Link
                     href={presetPath(preset)}
-                    className="text-[0.9375rem] text-fg-muted transition-colors hover:text-fg"
+                    className="text-sm text-fg-muted transition-colors hover:text-fg"
                   >
                     {preset.name}
                   </Link>
@@ -40,7 +36,7 @@ export function SiteFooter() {
           </nav>
 
           <nav aria-labelledby="pie-producto">
-            <h2 id="pie-producto" className="label">
+            <h2 id="pie-producto" className="text-sm font-medium">
               Producto
             </h2>
             <ul className="mt-4 space-y-2.5">
@@ -54,7 +50,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-[0.9375rem] text-fg-muted transition-colors hover:text-fg"
+                    className="text-sm text-fg-muted transition-colors hover:text-fg"
                   >
                     {item.label}
                   </Link>
@@ -63,7 +59,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href={`mailto:${site.support.email}`}
-                  className="text-[0.9375rem] text-fg-muted transition-colors hover:text-fg"
+                  className="text-sm text-fg-muted transition-colors hover:text-fg"
                 >
                   Contacto
                 </a>
@@ -72,9 +68,8 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <p className="label mt-6">
-          © 2026 {site.name} · Documento de referencia comercial · Todos los
-          derechos reservados
+        <p className="mt-12 border-t border-border pt-6 text-sm text-fg-subtle">
+          © 2026 {site.name} · Hecho para negocios de servicios de Latinoamérica
         </p>
       </Container>
     </footer>
