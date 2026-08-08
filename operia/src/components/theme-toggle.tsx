@@ -28,7 +28,7 @@ export function ThemeToggle() {
       aria-label="Cambiar entre modo claro y oscuro"
       title={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="inline-flex size-9 items-center justify-center rounded-lg border border-border text-fg-muted transition hover:bg-surface-2 hover:text-fg"
+      className="inline-flex size-9 items-center justify-center rounded-[2px] border border-border text-fg-muted transition-colors hover:bg-surface-2 hover:text-fg"
     >
       {/* Ambos iconos se renderizan; se alterna la visibilidad por CSS para que
           el HTML del servidor y el del cliente sean idénticos. */}

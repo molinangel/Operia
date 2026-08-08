@@ -86,7 +86,7 @@ export default async function ContactsPage({ params, searchParams }: Props) {
               No encontramos contactos que coincidan con «{q}».
             </p>
           ) : (
-            <div className="overflow-hidden rounded-xl border border-border bg-surface">
+            <div className="overflow-hidden rounded-[2px] border border-border bg-surface">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-fg-subtle">
@@ -133,7 +133,7 @@ export default async function ContactsPage({ params, searchParams }: Props) {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`Escribir a ${contact.name} por WhatsApp`}
-                            className="inline-flex rounded-lg p-1.5 text-fg-subtle transition hover:bg-success-soft hover:text-success"
+                            className="inline-flex rounded-[2px] p-1.5 text-fg-subtle transition hover:bg-success-soft hover:text-success"
                           >
                             <MessageCircle className="size-4" />
                           </a>

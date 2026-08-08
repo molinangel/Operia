@@ -196,7 +196,7 @@ export function NewJobDialog({
             </Field>
 
             {customFields.length > 0 && (
-              <div className="space-y-4 rounded-lg border border-border bg-surface-2 p-4">
+              <div className="space-y-4 rounded-[2px] border border-border bg-surface-2 p-4">
                 <p className="text-xs font-semibold uppercase tracking-wide text-fg-subtle">
                   Datos de tu rubro
                 </p>

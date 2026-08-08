@@ -7,7 +7,7 @@ export function Input({
   return (
     <input
       className={cn(
-        "h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-fg transition",
+        "h-10 w-full rounded-[2px] border border-border bg-surface px-3 text-sm text-fg transition",
         "placeholder:text-fg-subtle",
         "focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20",
         "disabled:cursor-not-allowed disabled:opacity-60",
@@ -26,7 +26,7 @@ export function Textarea({
   return (
     <textarea
       className={cn(
-        "min-h-24 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-fg transition",
+        "min-h-24 w-full rounded-[2px] border border-border bg-surface px-3 py-2 text-sm text-fg transition",
         "placeholder:text-fg-subtle",
         "focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20",
         "disabled:cursor-not-allowed disabled:opacity-60",
@@ -44,7 +44,7 @@ export function Select({
   return (
     <select
       className={cn(
-        "h-10 w-full appearance-none rounded-lg border border-border bg-surface px-3 pr-9 text-sm text-fg transition",
+        "h-10 w-full appearance-none rounded-[2px] border border-border bg-surface px-3 pr-9 text-sm text-fg transition",
         "focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20",
         "disabled:cursor-not-allowed disabled:opacity-60",
         "bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22 fill=%22none%22 stroke=%22%238b919c%22 stroke-width=%221.5%22><path d=%22M4 6l4 4 4-4%22/></svg>')] bg-[length:16px] bg-[right_0.65rem_center] bg-no-repeat",
@@ -123,7 +123,7 @@ export function Alert({
     <div
       role="alert"
       className={cn(
-        "rounded-lg px-3.5 py-2.5 text-sm leading-relaxed",
+        "rounded-[2px] px-3.5 py-2.5 text-sm leading-relaxed",
         tones[tone],
         className,
       )}

@@ -72,9 +72,9 @@ export function AppShell({
         <button
           type="button"
           onClick={() => setOrgMenu((v) => !v)}
-          className="flex w-full items-center gap-2.5 rounded-lg px-2 py-2 text-left transition hover:bg-surface-2"
+          className="flex w-full items-center gap-2.5 rounded-[2px] px-2 py-2 text-left transition hover:bg-surface-2"
         >
-          <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-accent text-sm font-bold text-accent-fg">
+          <span className="flex size-8 shrink-0 items-center justify-center rounded-[2px] bg-accent text-sm font-bold text-accent-fg">
             {initials(org.name)}
           </span>
           <span className="min-w-0 flex-1">
@@ -87,7 +87,7 @@ export function AppShell({
         </button>
 
         {orgMenu && (
-          <div className="absolute inset-x-3 top-full z-30 mt-1 overflow-hidden rounded-lg border border-border bg-surface shadow-[0_16px_40px_-12px_rgba(0,0,0,0.25)]">
+          <div className="absolute inset-x-3 top-full z-30 mt-1 overflow-hidden rounded-[2px] border border-border bg-surface">
             {orgs.map((o) => (
               <Link
                 key={o.slug}
@@ -119,7 +119,7 @@ export function AppShell({
               href={item.href}
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition",
+                "flex items-center gap-2.5 rounded-[2px] px-3 py-2 text-sm font-medium transition",
                 active
                   ? "bg-accent-soft text-accent"
                   : "text-fg-muted hover:bg-surface-2 hover:text-fg",
@@ -134,7 +134,7 @@ export function AppShell({
 
       {/* Estado de la suscripción */}
       {subscription && subscription.status === "TRIAL" && (
-        <div className="mx-3 mb-3 rounded-lg border border-accent/30 bg-accent-soft p-3">
+        <div className="mx-3 mb-3 rounded-[2px] border border-accent/30 bg-accent-soft p-3">
           <p className="text-xs font-semibold text-accent">
             {subscription.daysLeft !== null && subscription.daysLeft > 0
               ? `Te quedan ${subscription.daysLeft} días de prueba`
@@ -167,7 +167,7 @@ export function AppShell({
             <button
               type="submit"
               aria-label="Cerrar sesión"
-              className="rounded-lg p-1.5 text-fg-subtle transition hover:bg-surface-2 hover:text-danger"
+              className="rounded-[2px] p-1.5 text-fg-subtle transition hover:bg-surface-2 hover:text-danger"
             >
               <LogOut className="size-4" />
             </button>
@@ -205,7 +205,7 @@ export function AppShell({
             type="button"
             onClick={() => setMobileOpen(true)}
             aria-label="Abrir menú"
-            className="rounded-lg p-2 text-fg-muted transition hover:bg-surface-2 lg:hidden"
+            className="rounded-[2px] p-2 text-fg-muted transition hover:bg-surface-2 lg:hidden"
           >
             <Menu className="size-5" />
           </button>
@@ -265,7 +265,7 @@ export function CloseButton({ onClick }: { onClick: () => void }) {
       type="button"
       onClick={onClick}
       aria-label="Cerrar"
-      className="rounded-lg p-1.5 text-fg-subtle transition hover:bg-surface-2 hover:text-fg"
+      className="rounded-[2px] p-1.5 text-fg-subtle transition hover:bg-surface-2 hover:text-fg"
     >
       <X className="size-4" />
     </button>

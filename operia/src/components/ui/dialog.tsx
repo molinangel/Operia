@@ -24,7 +24,7 @@ export function DialogContent({
       <DialogPrimitive.Content
         className={cn(
           "fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2",
-          "max-h-[calc(100vh-3rem)] overflow-y-auto rounded-xl border border-border bg-surface shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)]",
+          "max-h-[calc(100vh-3rem)] overflow-y-auto rounded-[2px] border border-border bg-surface",
           className,
         )}
         {...props}
@@ -42,7 +42,7 @@ export function DialogContent({
           </div>
           <DialogPrimitive.Close
             aria-label="Cerrar"
-            className="rounded-lg p-1.5 text-fg-subtle transition hover:bg-surface-2 hover:text-fg"
+            className="rounded-[2px] p-1.5 text-fg-subtle transition hover:bg-surface-2 hover:text-fg"
           >
             <X className="size-4" />
           </DialogPrimitive.Close>

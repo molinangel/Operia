@@ -31,7 +31,7 @@ export function EmptyState({
       )}
     >
       {icon && (
-        <div className="mb-5 flex size-14 items-center justify-center rounded-2xl bg-accent-soft text-accent">
+        <div className="mb-5 flex size-14 items-center justify-center rounded-[2px] bg-accent-soft text-accent">
           {icon}
         </div>
       )}
@@ -66,7 +66,7 @@ export function StatCard({
   };
 
   return (
-    <div className="rounded-xl border border-border bg-surface p-5">
+    <div className="rounded-[2px] border border-border bg-surface p-5">
       <p className="text-xs font-medium uppercase tracking-wide text-fg-subtle">
         {label}
       </p>

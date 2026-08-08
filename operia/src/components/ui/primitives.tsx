@@ -6,10 +6,18 @@ export function Container({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn("mx-auto w-full max-w-6xl px-5 sm:px-8", className)}
+      className={cn("mx-auto w-full max-w-[76rem] px-5 sm:px-8", className)}
       {...props}
     />
   );
+}
+
+/** Etiqueta de campo. El conector tipográfico de todo el sitio. */
+export function FieldLabel({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLSpanElement>) {
+  return <span className={cn("label", className)} {...props} />;
 }
 
 export function Badge({
@@ -20,17 +28,17 @@ export function Badge({
   tone?: "neutral" | "accent" | "success" | "warning" | "danger" | "info";
 }) {
   const tones: Record<string, string> = {
-    neutral: "bg-surface-2 text-fg-muted border-border",
-    accent: "bg-accent-soft text-accent border-transparent",
-    success: "bg-success-soft text-success border-transparent",
-    warning: "bg-warning-soft text-warning border-transparent",
-    danger: "bg-danger-soft text-danger border-transparent",
-    info: "bg-info-soft text-info border-transparent",
+    neutral: "border-border-strong text-fg-muted",
+    accent: "border-accent text-accent",
+    success: "border-success text-success",
+    warning: "border-warning text-warning",
+    danger: "border-danger text-danger",
+    info: "border-info text-info",
   };
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium",
+        "inline-flex items-center gap-1.5 rounded-[2px] border px-2 py-0.5 font-mono text-[0.6875rem] uppercase tracking-[0.1em]",
         tones[tone],
         className,
       )}
@@ -45,42 +53,41 @@ export function Card({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn(
-        "rounded-xl border border-border bg-surface shadow-[0_1px_2px_rgba(0,0,0,0.04)]",
-        className,
-      )}
+      className={cn("rounded-[2px] border border-border bg-surface", className)}
       {...props}
     />
   );
 }
 
-/** Título de sección con antetítulo — usado en toda la landing. */
+/**
+ * Cabecera de sección con numeral, como el encabezado de un apartado del
+ * formulario. Alineada a la izquierda: el centrado es lo que hace que todas
+ * las landings se parezcan entre sí.
+ */
 export function SectionHeading({
+  ordinal,
   eyebrow,
   title,
   description,
-  align = "center",
+  className,
 }: {
+  ordinal?: string;
   eyebrow?: string;
   title: React.ReactNode;
   description?: React.ReactNode;
-  align?: "center" | "left";
+  className?: string;
 }) {
   return (
-    <div
-      className={cn(
-        "max-w-2xl",
-        align === "center" ? "mx-auto text-center" : "text-left",
-      )}
-    >
-      {eyebrow && (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-accent">
-          {eyebrow}
-        </p>
-      )}
-      <h2 className="text-3xl font-bold sm:text-4xl">{title}</h2>
+    <div className={cn("border-t border-rule pt-5", className)}>
+      <div className="flex items-baseline gap-4">
+        {ordinal && (
+          <span className="ordinal text-sm text-accent">{ordinal}</span>
+        )}
+        {eyebrow && <span className="label">{eyebrow}</span>}
+      </div>
+      <h2 className="mt-5 max-w-3xl text-3xl sm:text-[2.75rem]">{title}</h2>
       {description && (
-        <p className="mt-4 text-lg leading-relaxed text-fg-muted">
+        <p className="mt-4 max-w-2xl text-[1.0625rem] leading-relaxed text-fg-muted">
           {description}
         </p>
       )}

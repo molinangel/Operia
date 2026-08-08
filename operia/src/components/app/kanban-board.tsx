@@ -107,7 +107,7 @@ export function KanbanBoard({
   return (
     <div className="flex min-h-0 flex-1 flex-col">
       {error && (
-        <div className="mx-5 mt-4 rounded-lg bg-danger-soft px-3.5 py-2.5 text-sm text-danger">
+        <div className="mx-5 mt-4 rounded-[2px] bg-danger-soft px-3.5 py-2.5 text-sm text-danger">
           {error}
         </div>
       )}
@@ -187,7 +187,7 @@ function Column({
       <div
         ref={setNodeRef}
         className={cn(
-          "flex min-h-32 flex-1 flex-col gap-2 rounded-xl border border-dashed p-2 transition",
+          "flex min-h-32 flex-1 flex-col gap-2 rounded-[2px] border border-dashed p-2 transition",
           isOver
             ? "border-accent bg-accent-soft"
             : "border-border bg-bg-subtle",
@@ -252,9 +252,9 @@ function JobCard({
     <div
       ref={setNodeRef}
       className={cn(
-        "group relative rounded-lg border border-border bg-surface p-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition",
+        "group relative rounded-[2px] border border-border bg-surface p-3 transition",
         isDragging && "opacity-30",
-        overlay && "rotate-2 shadow-[0_16px_32px_-8px_rgba(0,0,0,0.3)]",
+        overlay && "rotate-2",
       )}
     >
       {PRIORITY_TONE[job.priority] && (

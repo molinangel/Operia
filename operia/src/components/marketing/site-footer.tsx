@@ -4,81 +4,66 @@ import { LANDING_PRESETS, presetPath } from "@/lib/presets";
 import { site } from "@/lib/site";
 import { Logo } from "./logo";
 
+/** Pie compuesto como el reverso de un formulario: bloques ruleados y letra chica. */
 export function SiteFooter() {
-  const year = 2026;
-
   return (
-    <footer className="mt-auto border-t border-border bg-bg-subtle">
+    <footer className="mt-auto border-t border-rule">
       <Container className="py-14">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 border-b border-border pb-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Logo className="h-7 w-auto" />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-fg-muted">
-              El sistema que ordena tu negocio de servicios: trabajos,
-              presupuestos, cobros y recordatorios. Configurable para tu rubro.
+            <Logo className="h-6 w-auto" />
+            <p className="mt-5 max-w-sm text-[0.9375rem] leading-relaxed text-fg-muted">
+              El sistema que ordena tu negocio de servicios. Trabajos,
+              presupuestos, cobros y recordatorios, configurados para tu rubro.
+            </p>
+            <p className="label mt-6">
+              Hecho para Latinoamérica · precios en dólares
             </p>
           </div>
 
-          <nav aria-labelledby="f-rubros">
-            <h3 id="f-rubros" className="text-sm font-semibold">
+          <nav aria-labelledby="pie-rubros">
+            <h2 id="pie-rubros" className="label">
               Por rubro
-            </h3>
+            </h2>
             <ul className="mt-4 space-y-2.5">
-              {LANDING_PRESETS.slice(0, 5).map((p) => (
-                <li key={p.key}>
+              {LANDING_PRESETS.map((preset) => (
+                <li key={preset.key}>
                   <Link
-                    href={presetPath(p)}
-                    className="text-sm text-fg-muted transition hover:text-fg"
+                    href={presetPath(preset)}
+                    className="text-[0.9375rem] text-fg-muted transition-colors hover:text-fg"
                   >
-                    {p.name}
+                    {preset.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
 
-          <nav aria-labelledby="f-mas">
-            <h3 id="f-mas" className="text-sm font-semibold">
-              Más rubros
-            </h3>
-            <ul className="mt-4 space-y-2.5">
-              {LANDING_PRESETS.slice(5).map((p) => (
-                <li key={p.key}>
-                  <Link
-                    href={presetPath(p)}
-                    className="text-sm text-fg-muted transition hover:text-fg"
-                  >
-                    {p.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <nav aria-labelledby="f-producto">
-            <h3 id="f-producto" className="text-sm font-semibold">
+          <nav aria-labelledby="pie-producto">
+            <h2 id="pie-producto" className="label">
               Producto
-            </h3>
+            </h2>
             <ul className="mt-4 space-y-2.5">
-              <li>
-                <Link href="/precios" className="text-sm text-fg-muted transition hover:text-fg">
-                  Precios
-                </Link>
-              </li>
-              <li>
-                <Link href="/registro" className="text-sm text-fg-muted transition hover:text-fg">
-                  Probar gratis
-                </Link>
-              </li>
-              <li>
-                <Link href="/login" className="text-sm text-fg-muted transition hover:text-fg">
-                  Entrar
-                </Link>
-              </li>
+              {[
+                { href: "/precios", label: "Precios" },
+                { href: "/registro", label: "Probar gratis" },
+                { href: "/login", label: "Entrar" },
+                { href: "/terminos", label: "Términos" },
+                { href: "/privacidad", label: "Privacidad" },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-[0.9375rem] text-fg-muted transition-colors hover:text-fg"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <a
                   href={`mailto:${site.support.email}`}
-                  className="text-sm text-fg-muted transition hover:text-fg"
+                  className="text-[0.9375rem] text-fg-muted transition-colors hover:text-fg"
                 >
                   Contacto
                 </a>
@@ -87,20 +72,10 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-sm text-fg-subtle sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {year} {site.name}. Hecho para negocios de servicios de
-            Latinoamérica.
-          </p>
-          <div className="flex gap-5">
-            <Link href="/terminos" className="transition hover:text-fg">
-              Términos
-            </Link>
-            <Link href="/privacidad" className="transition hover:text-fg">
-              Privacidad
-            </Link>
-          </div>
-        </div>
+        <p className="label mt-6">
+          © 2026 {site.name} · Documento de referencia comercial · Todos los
+          derechos reservados
+        </p>
       </Container>
     </footer>
   );

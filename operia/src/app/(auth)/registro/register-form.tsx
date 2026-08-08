@@ -108,7 +108,7 @@ export function RegisterForm({
               key={preset.key}
               type="button"
               onClick={() => choose(preset.key)}
-              className="flex items-start gap-3 rounded-lg border border-border bg-surface-2 p-3.5 text-left transition hover:border-accent hover:bg-accent-soft"
+              className="flex items-start gap-3 rounded-[2px] border border-border bg-surface-2 p-3.5 text-left transition hover:border-accent hover:bg-accent-soft"
             >
               <span className="text-xl leading-none" aria-hidden>
                 {preset.icon}
@@ -139,7 +139,7 @@ export function RegisterForm({
         <button
           type="button"
           onClick={() => setStep(1)}
-          className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-sm text-fg-muted transition hover:text-fg"
+          className="inline-flex items-center gap-1 rounded-[2px] px-2 py-1 text-sm text-fg-muted transition hover:text-fg"
         >
           <ArrowLeft className="size-4" />
           Cambiar rubro
@@ -147,7 +147,7 @@ export function RegisterForm({
       </div>
 
       {selected && (
-        <div className="mt-4 flex items-center gap-2.5 rounded-lg bg-accent-soft px-3.5 py-2.5">
+        <div className="mt-4 flex items-center gap-2.5 rounded-[2px] bg-accent-soft px-3.5 py-2.5">
           <span className="text-lg leading-none" aria-hidden>
             {selected.icon}
           </span>

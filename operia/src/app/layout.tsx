@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -10,11 +10,20 @@ const sans = Geist({
   display: "swap",
 });
 
-const display = Bricolage_Grotesque({
+/**
+ * Serif de titulares.
+ *
+ * El contraste serif / mono / sans es lo que aleja al sitio del molde SaaS,
+ * donde todo está en la misma grotesca. `opsz` alto y `SOFT` bajo dan un
+ * dibujo firme, de imprenta, no decorativo.
+ */
+const display = Fraunces({
   variable: "--font-display-base",
   subsets: ["latin"],
   display: "swap",
-  weight: ["500", "600", "700", "800"],
+  // Sin `weight` se carga la variable completa, que es lo que permite declarar
+  // ejes. Los dos no se pueden combinar.
+  axes: ["SOFT", "WONK", "opsz"],
 });
 
 const mono = Geist_Mono({

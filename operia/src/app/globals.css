@@ -2,78 +2,91 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ══════════════════════════════════════════════════════════════
-   OPERIA — sistema de diseño
-   Base tinta cálida · acento naranja señal · tipografía con carácter
-   ══════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════════
+   OPERIA — sistema de diseño «parte de trabajo»
+
+   La idea rectora: el producto reemplaza el papel donde el negocio anota
+   la orden. Así que la interfaz está compuesta como ese formulario —
+   papel cálido, tinta, filetes de un pixel, etiquetas en monoespaciada,
+   secciones numeradas y un sello rojo.
+
+   Prohibido en esta hoja de estilos: degradados decorativos, sombras
+   difusas de colores, esquinas muy redondeadas, resplandores. Nada de eso
+   existe en un documento impreso y es lo que hace que una web parezca
+   una plantilla más.
+   ══════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Superficies */
-  --bg: #fbfaf8;
-  --bg-subtle: #f4f2ee;
-  --surface: #ffffff;
-  --surface-2: #faf9f7;
-  --border: #e6e2db;
-  --border-strong: #d4cfc5;
+  /* Papel */
+  --bg: #f4f1ea;
+  --bg-subtle: #eae5da;
+  --surface: #fdfcf9;
+  --surface-2: #f0ece2;
 
-  /* Texto */
-  --fg: #14161a;
-  --fg-muted: #5f6570;
-  --fg-subtle: #8b919c;
+  /* Filetes: la unidad estructural del sistema */
+  --border: #d9d2c3;
+  --border-strong: #b3a892;
+  --rule: #1a1713;
 
-  /* Acento */
-  --accent: #ff5a1f;
-  --accent-hover: #e94e15;
-  --accent-fg: #ffffff;
-  --accent-soft: #fff0e9;
-  --accent-ring: rgba(255, 90, 31, 0.35);
+  /* Tinta */
+  --fg: #1a1713;
+  --fg-muted: #5b544a;
+  --fg-subtle: #8b8275;
 
-  /* Semánticos */
-  --success: #0f9d58;
-  --success-soft: #e6f6ee;
-  --warning: #d98324;
-  --warning-soft: #fdf3e3;
-  --danger: #dc2626;
-  --danger-soft: #fdeaea;
-  --info: #2563eb;
-  --info-soft: #e8effd;
+  /* Sello */
+  --accent: #b02a1f;
+  --accent-hover: #8f2018;
+  --accent-fg: #fdfcf9;
+  --accent-soft: #f7e6e2;
+  --accent-ring: rgba(176, 42, 31, 0.28);
 
-  --radius: 0.625rem;
-  --shadow-sm: 0 1px 2px rgba(20, 22, 26, 0.06);
-  --shadow-md: 0 4px 16px -4px rgba(20, 22, 26, 0.1), 0 2px 4px rgba(20, 22, 26, 0.04);
-  --shadow-lg: 0 24px 48px -12px rgba(20, 22, 26, 0.18);
+  /* Semánticos, en clave de tinta de sello */
+  --success: #2f6b3d;
+  --success-soft: #e6efe6;
+  --warning: #9a6b12;
+  --warning-soft: #f7edd8;
+  --danger: #b02a1f;
+  --danger-soft: #f7e6e2;
+  --info: #2a4d78;
+  --info-soft: #e3eaf3;
+
+  /* Radio mínimo: los documentos tienen esquinas, no burbujas */
+  --radius: 2px;
+  --shadow-sm: none;
+  --shadow-md: 0 1px 0 var(--border);
+  --shadow-lg: 0 12px 32px -18px rgba(26, 23, 19, 0.45);
 }
 
 .dark {
-  --bg: #0a0b0d;
-  --bg-subtle: #101216;
-  --surface: #14161a;
-  --surface-2: #1a1d22;
-  --border: #262a31;
-  --border-strong: #363b44;
+  --bg: #131211;
+  --bg-subtle: #0d0c0b;
+  --surface: #1c1a18;
+  --surface-2: #232120;
 
-  --fg: #f2f1ef;
-  --fg-muted: #9ba2ad;
-  --fg-subtle: #6b7280;
+  --border: #35312c;
+  --border-strong: #4d4740;
+  --rule: #e8e3d9;
 
-  --accent: #ff6a33;
-  --accent-hover: #ff7d4d;
-  --accent-fg: #14161a;
-  --accent-soft: #2a1710;
-  --accent-ring: rgba(255, 106, 51, 0.4);
+  --fg: #ece7dd;
+  --fg-muted: #a49c8f;
+  --fg-subtle: #7a7267;
 
-  --success: #34d399;
-  --success-soft: #0e2a20;
-  --warning: #fbbf24;
-  --warning-soft: #2b2110;
-  --danger: #f87171;
-  --danger-soft: #2c1414;
-  --info: #60a5fa;
-  --info-soft: #10203a;
+  --accent: #e0524a;
+  --accent-hover: #ef665e;
+  --accent-fg: #131211;
+  --accent-soft: #2e1a18;
+  --accent-ring: rgba(224, 82, 74, 0.3);
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 16px -4px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 24px 48px -12px rgba(0, 0, 0, 0.6);
+  --success: #6aa877;
+  --success-soft: #17251a;
+  --warning: #d3a541;
+  --warning-soft: #2a2214;
+  --danger: #e0524a;
+  --danger-soft: #2e1a18;
+  --info: #7fa3ce;
+  --info-soft: #16202c;
+
+  --shadow-lg: 0 12px 32px -18px rgba(0, 0, 0, 0.8);
 }
 
 @theme inline {
@@ -83,6 +96,7 @@
   --color-surface-2: var(--surface-2);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
+  --color-rule: var(--rule);
 
   --color-fg: var(--fg);
   --color-fg-muted: var(--fg-muted);
@@ -126,10 +140,17 @@
     text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4 {
-    font-family: var(--font-display-base), var(--font-sans-base), sans-serif;
-    letter-spacing: -0.02em;
+  h1, h2, h3 {
+    font-family: var(--font-display-base), Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.02;
     text-wrap: balance;
+  }
+
+  h4, h5, h6 {
+    font-family: var(--font-sans-base), sans-serif;
+    letter-spacing: -0.01em;
   }
 
   p {
@@ -148,36 +169,63 @@
 }
 
 @layer components {
-  /* Rejilla de fondo sutil para secciones destacadas */
-  .grid-bg {
+  /**
+   * Etiqueta de campo de formulario. Es el conector tipográfico de todo el
+   * sistema: cada dato del sitio se presenta como un campo rotulado.
+   */
+  .label {
+    font-family: var(--font-mono-base), monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+  }
+
+  /** Numeral de sección, como el ordinal impreso de un formulario. */
+  .ordinal {
+    font-family: var(--font-mono-base), monospace;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+
+  /**
+   * Papel milimetrado tenue. Se usa muy poco y muy claro: sugiere la hoja
+   * cuadriculada del taller sin convertirse en decoración.
+   */
+  .paper-grid {
     background-image:
       linear-gradient(to right, var(--border) 1px, transparent 1px),
       linear-gradient(to bottom, var(--border) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+    background-size: 24px 24px;
+    opacity: 0.4;
   }
 
-  .glow {
-    background: radial-gradient(
-      ellipse 60% 50% at 50% 0%,
-      var(--accent-ring),
-      transparent 70%
+  /** Borde perforado, como el de un talonario. */
+  .perforated {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--border-strong) 0 4px,
+      transparent 4px 9px
     );
+    background-size: 1px 100%;
+    background-repeat: no-repeat;
   }
 
-  .card {
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
+  /** Sello de goma. Rotado y con el borde grueso, como el de verdad. */
+  .stamp {
+    font-family: var(--font-mono-base), monospace;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    opacity: 0.85;
   }
 }
 
-/* Aparición al hacer scroll — respeta prefers-reduced-motion */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -186,7 +234,7 @@
 }
 
 .animate-rise {
-  animation: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -200,18 +248,16 @@
   }
 }
 
-/* Barra de desplazamiento discreta */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--bg-subtle);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--border-strong);
-  border-radius: 999px;
-  border: 3px solid var(--bg);
+  border: 4px solid var(--bg-subtle);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--fg-subtle);

@@ -2,128 +2,100 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/primitives";
-import { KanbanPreview } from "./kanban-preview";
 import { type IndustryPreset, presetPath } from "@/lib/presets";
 import { cn } from "@/lib/utils";
+import { StatusFlow, WorkOrderSheet } from "./work-order";
 
 /**
- * El argumento de venta más fuerte del producto, hecho interactivo:
- * el visitante toca su rubro y ve el sistema configurado para él al instante.
+ * El argumento de venta más fuerte, hecho interactivo: el visitante toca su
+ * rubro y ve el mismo sistema hablando su idioma.
  *
- * Comunica en tres segundos lo que un párrafo no logra: "esto se adapta a mí".
+ * Se presenta como el índice de un expediente —columna de rubros numerada a la
+ * izquierda, documento a la derecha—, no como una fila de pestañas con píldoras.
  */
 export function IndustryShowcase({ presets }: { presets: IndustryPreset[] }) {
   const [active, setActive] = useState(presets[0]);
 
   return (
-    <section className="border-b border-border bg-bg-subtle py-20">
+    <section className="border-b border-rule py-20">
       <Container>
         <SectionHeading
+          ordinal="00"
           eyebrow="Un sistema, tu rubro"
           title="Elegí a qué te dedicás y mirá cómo queda"
-          description="Mismo sistema, configurado distinto. Los estados, los campos y hasta cómo se llaman las cosas cambian según tu negocio."
+          description="Mismo sistema, configurado distinto. Cambian los estados, los campos, los documentos y hasta cómo se llaman las cosas."
         />
 
-        <div
-          role="tablist"
-          aria-label="Rubros"
-          className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-2"
-        >
-          {presets.map((p) => (
-            <button
-              key={p.key}
-              role="tab"
-              aria-selected={active.key === p.key}
-              onClick={() => setActive(p)}
-              className={cn(
-                "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition",
-                active.key === p.key
-                  ? "border-accent bg-accent text-accent-fg shadow-sm"
-                  : "border-border bg-surface text-fg-muted hover:border-border-strong hover:text-fg",
-              )}
-            >
-              <span aria-hidden>{p.icon}</span>
-              {p.shortName}
-            </button>
-          ))}
-        </div>
+        <div className="mt-12 grid gap-10 lg:grid-cols-[18rem_1fr] lg:gap-14">
+          {/* Índice de rubros */}
+          <div role="tablist" aria-label="Rubros" className="border-t border-border">
+            {presets.map((preset, i) => {
+              const selected = active.key === preset.key;
+              return (
+                <button
+                  key={preset.key}
+                  role="tab"
+                  aria-selected={selected}
+                  onClick={() => setActive(preset)}
+                  className={cn(
+                    "flex w-full items-baseline gap-3 border-b border-border py-3.5 text-left transition-colors",
+                    selected ? "text-accent" : "text-fg-muted hover:text-fg",
+                  )}
+                >
+                  <span className="ordinal text-[0.6875rem]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="flex-1 text-[0.9375rem]">{preset.name}</span>
+                  {selected && (
+                    <span className="ordinal text-[0.6875rem]" aria-hidden>
+                      ←
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1.6fr] lg:items-start">
-          <div className="rounded-xl border border-border bg-surface p-6">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl leading-none" aria-hidden>
-                {active.icon}
-              </span>
-              <h3 className="font-display text-lg font-bold">{active.name}</h3>
-            </div>
-
-            <dl className="mt-5 space-y-4 text-sm">
+          <div>
+            <dl className="mb-8 grid gap-5 border-b border-border pb-8 sm:grid-cols-2">
               <div>
-                <dt className="text-xs font-semibold uppercase tracking-wide text-fg-subtle">
-                  Se llama
-                </dt>
-                <dd className="mt-1 font-medium">
+                <dt className="label">Su objeto de trabajo</dt>
+                <dd className="mt-1.5 font-display text-xl">
                   {active.vocabulary.jobPlural}
                   {active.vocabulary.useAssets && (
-                    <span className="text-fg-muted">
-                      {" "}
-                      · {active.vocabulary.assetPlural}
+                    <span className="text-fg-subtle">
+                      {" "}· {active.vocabulary.assetPlural}
                     </span>
                   )}
                 </dd>
               </div>
-
               <div>
-                <dt className="text-xs font-semibold uppercase tracking-wide text-fg-subtle">
-                  Sus estados
-                </dt>
-                <dd className="mt-1.5 flex flex-wrap gap-1.5">
-                  {active.statuses.slice(0, 5).map((s) => (
-                    <span
-                      key={s.name}
-                      className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface-2 px-2 py-0.5 text-xs"
-                    >
-                      <span
-                        className="size-1.5 rounded-full"
-                        style={{ backgroundColor: s.color }}
-                      />
-                      {s.name}
-                    </span>
-                  ))}
+                <dt className="label">Sus campos propios</dt>
+                <dd className="mt-1.5 text-[0.9375rem] text-fg-muted">
+                  {active.customFields.length > 0
+                    ? active.customFields
+                        .slice(0, 4)
+                        .map((f) => f.label)
+                        .join(" · ")
+                    : "Ninguno: este rubro no los necesita"}
                 </dd>
               </div>
-
-              {active.customFields.length > 0 && (
-                <div>
-                  <dt className="text-xs font-semibold uppercase tracking-wide text-fg-subtle">
-                    Sus campos propios
-                  </dt>
-                  <dd className="mt-1.5 flex flex-wrap gap-1.5">
-                    {active.customFields.slice(0, 6).map((f) => (
-                      <span
-                        key={f.key}
-                        className="rounded-md bg-accent-soft px-2 py-0.5 text-xs text-accent"
-                      >
-                        {f.label}
-                      </span>
-                    ))}
-                  </dd>
-                </div>
-              )}
             </dl>
 
-            <Link
-              href={presetPath(active)}
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
-            >
-              Ver {active.name.toLowerCase()} en detalle
-              <ArrowRight className="size-4" />
-            </Link>
-          </div>
+            <p className="label mb-3">Su recorrido</p>
+            <StatusFlow preset={active} className="mb-10" />
 
-          <KanbanPreview preset={active} />
+            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+              <WorkOrderSheet preset={active} className="max-w-xl" />
+              <Link
+                href={presetPath(active)}
+                className="label whitespace-nowrap text-accent underline underline-offset-4 hover:decoration-2"
+              >
+                Ver {active.name.toLowerCase()} en detalle →
+              </Link>
+            </div>
+          </div>
         </div>
       </Container>
     </section>

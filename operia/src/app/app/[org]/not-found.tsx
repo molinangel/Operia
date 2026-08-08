@@ -13,7 +13,7 @@ export default function AppNotFound() {
   return (
     <div className="flex min-h-screen items-center justify-center px-6">
       <div className="max-w-md text-center">
-        <div className="mx-auto mb-6 flex size-14 items-center justify-center rounded-2xl bg-surface-2 text-fg-subtle">
+        <div className="mx-auto mb-6 flex size-14 items-center justify-center rounded-[2px] bg-surface-2 text-fg-subtle">
           <SearchX className="size-7" />
         </div>
         <h1 className="text-2xl font-bold">No encontramos esta página</h1>
