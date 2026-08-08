@@ -6,19 +6,19 @@ import { Logo } from "./logo";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-border bg-bg-subtle">
+    <footer className="mt-auto border-t border-border">
       <Container className="py-14">
         <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
           <div>
             <Logo className="h-6 w-auto" />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-fg-muted">
+            <p className="mt-5 max-w-xs text-[0.8125rem] leading-relaxed text-fg-muted">
               El sistema que ordena tu negocio de servicios: trabajos,
               presupuestos, cobros y recordatorios, configurado para tu rubro.
             </p>
           </div>
 
           <nav aria-labelledby="pie-rubros">
-            <h2 id="pie-rubros" className="text-sm font-medium">
+            <h2 id="pie-rubros" className="text-[0.8125rem] font-medium">
               Por rubro
             </h2>
             <ul className="mt-4 space-y-2.5">
@@ -26,7 +26,7 @@ export function SiteFooter() {
                 <li key={preset.key}>
                   <Link
                     href={presetPath(preset)}
-                    className="text-sm text-fg-muted transition-colors hover:text-fg"
+                    className="text-[0.8125rem] text-fg-muted transition-colors hover:text-fg"
                   >
                     {preset.name}
                   </Link>
@@ -36,7 +36,7 @@ export function SiteFooter() {
           </nav>
 
           <nav aria-labelledby="pie-producto">
-            <h2 id="pie-producto" className="text-sm font-medium">
+            <h2 id="pie-producto" className="text-[0.8125rem] font-medium">
               Producto
             </h2>
             <ul className="mt-4 space-y-2.5">
@@ -50,7 +50,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-fg-muted transition-colors hover:text-fg"
+                    className="text-[0.8125rem] text-fg-muted transition-colors hover:text-fg"
                   >
                     {item.label}
                   </Link>
@@ -59,7 +59,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href={`mailto:${site.support.email}`}
-                  className="text-sm text-fg-muted transition-colors hover:text-fg"
+                  className="text-[0.8125rem] text-fg-muted transition-colors hover:text-fg"
                 >
                   Contacto
                 </a>
@@ -68,7 +68,7 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <p className="mt-12 border-t border-border pt-6 text-sm text-fg-subtle">
+        <p className="mt-12 border-t border-border pt-6 text-[0.75rem] text-fg-subtle">
           © 2026 {site.name} · Hecho para negocios de servicios de Latinoamérica
         </p>
       </Container>

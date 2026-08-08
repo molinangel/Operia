@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/primitives";
 import { type IndustryPreset, presetPath } from "@/lib/presets";
 import { cn } from "@/lib/utils";
-import { AppPreview } from "./app-preview";
+import { BoardVisual } from "./visuals";
 
 /**
  * El visitante elige su rubro y ve el mismo sistema hablando su idioma:
@@ -19,11 +19,11 @@ export function IndustryShowcase({ presets }: { presets: IndustryPreset[] }) {
   const [active, setActive] = useState(presets[0]);
 
   return (
-    <section className="border-b border-border bg-bg-subtle py-20 sm:py-24">
+    <section className="border-t border-border py-24">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow">Un sistema, tu rubro</p>
-          <h2 className="mt-4 text-3xl sm:text-4xl">
+          <p className="stage">Un sistema, tu rubro</p>
+          <h2 className="mt-4 text-[2rem] sm:text-[2.5rem]">
             Elegí a qué te dedicás y mirá cómo queda
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-fg-muted">
@@ -46,10 +46,10 @@ export function IndustryShowcase({ presets }: { presets: IndustryPreset[] }) {
                 aria-selected={selected}
                 onClick={() => setActive(preset)}
                 className={cn(
-                  "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                  "rounded-full border px-3.5 py-1.5 text-[0.8125rem] transition-colors",
                   selected
-                    ? "border-accent bg-accent text-accent-fg"
-                    : "border-border bg-surface text-fg-muted hover:border-border-strong hover:text-fg",
+                    ? "border-accent bg-accent font-medium text-accent-fg"
+                    : "border-border text-fg-muted hover:border-border-strong hover:text-fg",
                 )}
               >
                 {preset.name}
@@ -59,7 +59,7 @@ export function IndustryShowcase({ presets }: { presets: IndustryPreset[] }) {
         </div>
 
         <div className="mx-auto mt-10 max-w-5xl">
-          <AppPreview preset={active} />
+          <BoardVisual preset={active} />
 
           <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
             <p className="text-sm text-fg-muted">

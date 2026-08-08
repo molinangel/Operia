@@ -163,17 +163,30 @@ en servidor de las landings es el canal de captación del negocio. Ver docs/02.
 
 ### Diseño
 
-El sistema es **minimalista, claro y profesional**. La jerarquía la hacen el
-espacio y la tipografía, no la decoración. Reglas:
+**Referencia declarada: Linear.** Se toma el criterio, no la marca.
 
-- **Un solo color de acento** (verde profundo), usado poco: acción principal,
-  estado activo y dato clave. Nada más.
-- **Neutros fríos y limpios.** Ni beige, ni sepia, ni fondos oscuros como base.
-- **Sombras de una capa y muy suaves.** Separan planos, no adornan.
-- **Prohibido:** degradados, resplandores, texturas, patrones de fondo,
-  tipografías de fantasía, elementos rotados y marcos de navegador.
-- El producto se muestra **derecho y limpio**, dibujado en HTML, sin
-  perspectiva ni mockups.
+Sistema:
+- Fondo casi negro (#08090A), nunca negro puro. El sitio nace en oscuro.
+- Bordes en blanco a muy baja opacidad, no grises sólidos.
+- Texto secundario en gris frío (`--fg-muted`), no blanco con opacidad.
+- El acento (violeta) aparece **muy poco**: estados y detalles funcionales.
+  **El botón principal es blanco**, no de color.
+- Tipografía apretada y en peso 500. El 700 en titulares delata la plantilla.
+- Cuerpo de texto en 15px con interlineado alto.
+
+**Patrones prohibidos** — son la firma de una landing generada por IA:
+- Portada centrada. Va **alineada a la izquierda**.
+- Píldora o antetítulo arriba del titular.
+- Dos botones en el medio de la portada. La acción principal vive en la
+  barra superior.
+- Línea de «14 días · sin tarjeta · sin instalar» debajo de los botones.
+- Degradados de color, resplandores, texturas y marcos de navegador.
+- Grillas parejas de tres tarjetas con icono, título y párrafo.
+
+**Lo que sí:** la página recorre las etapas del trabajo (1.0 Entra,
+2.0 Se presupuesta, 3.0 Avanza, 4.0 Se cobra, 5.0 Se avisa) y cada una
+muestra la pantalla que la resuelve. Las vistas del producto se dibujan en
+HTML, densas y con contenido real del rubro.
 
 ---
 

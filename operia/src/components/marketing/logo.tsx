@@ -14,7 +14,7 @@ export function Logo({ className }: { className?: string }) {
         <rect x="9.5" y="5" width="5" height="15" rx="1.6" fill="currentColor" opacity="0.6" />
         <rect x="17" y="2" width="5" height="18" rx="1.6" fill="var(--accent)" />
       </svg>
-      <span className="text-[1.1875rem] font-semibold tracking-[-0.02em]">
+      <span className="text-[1.0625rem] font-medium tracking-[-0.02em]">
         {site.name}
       </span>
     </span>

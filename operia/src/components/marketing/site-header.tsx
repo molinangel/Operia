@@ -14,8 +14,8 @@ export function SiteHeader() {
   const [rubros, setRubros] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur-sm">
-      <Container className="flex h-16 items-center justify-between gap-6">
+    <header className="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur-xl">
+      <Container className="flex h-14 items-center justify-between gap-6">
         <Link href="/" aria-label={site.name}>
           <Logo className="h-6 w-auto" />
         </Link>
@@ -29,7 +29,7 @@ export function SiteHeader() {
             <button
               type="button"
               aria-expanded={rubros}
-              className="py-2 text-[0.9375rem] text-fg-muted transition-colors hover:text-fg"
+              className="py-2 text-[0.8125rem] text-fg-muted transition-colors hover:text-fg"
             >
               Por rubro
             </button>
@@ -43,7 +43,7 @@ export function SiteHeader() {
                         href={presetPath(preset)}
                         className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-surface-2"
                       >
-                        <span className="block text-[0.9375rem] font-medium">
+                        <span className="block text-[0.8125rem] font-medium">
                           {preset.name}
                         </span>
                         <span className="mt-0.5 block truncate text-xs text-fg-subtle">
@@ -59,23 +59,24 @@ export function SiteHeader() {
 
           <Link
             href="/precios"
-            className="py-2 text-[0.9375rem] text-fg-muted transition-colors hover:text-fg"
+            className="py-2 text-[0.8125rem] text-fg-muted transition-colors hover:text-fg"
           >
             Precios
           </Link>
           <Link
             href="/#recorrido"
-            className="py-2 text-[0.9375rem] text-fg-muted transition-colors hover:text-fg"
+            className="py-2 text-[0.8125rem] text-fg-muted transition-colors hover:text-fg"
           >
             Cómo funciona
           </Link>
         </nav>
 
         <div className="flex items-center gap-3">
+          <span className="hidden h-5 w-px bg-border sm:block" aria-hidden />
           <ThemeToggle />
           <Link
             href="/login"
-            className="hidden text-[0.9375rem] text-fg-muted transition-colors hover:text-fg sm:block"
+            className="hidden text-[0.8125rem] text-fg-muted transition-colors hover:text-fg sm:block"
           >
             Entrar
           </Link>

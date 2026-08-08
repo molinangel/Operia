@@ -11,7 +11,7 @@ import {
   Features,
   FinalCta,
   Hero,
-  HowItWorks,
+  Journey,
   PainPoints,
   Pricing,
 } from "@/components/marketing/sections";
@@ -34,9 +34,9 @@ export default function HomePage() {
       <JsonLd data={faqSchema(preset)} />
 
       <Hero preset={preset} />
+      <Journey preset={preset} />
       <IndustryShowcase presets={LANDING_PRESETS} />
       <PainPoints preset={preset} />
-      <HowItWorks preset={preset} />
       <Features preset={preset} />
       <Configurable preset={preset} />
       <Pricing compact />

@@ -1,6 +1,5 @@
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { SiteHeader } from "@/components/marketing/site-header";
-import { WhatsappFab } from "@/components/marketing/whatsapp-fab";
 import { JsonLd, organizationSchema } from "@/components/marketing/json-ld";
 
 export default function MarketingLayout({
@@ -14,7 +13,6 @@ export default function MarketingLayout({
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />
-      <WhatsappFab />
     </>
   );
 }

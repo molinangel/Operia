@@ -5,89 +5,94 @@
 /* ══════════════════════════════════════════════════════════════════
    OPERIA — sistema de diseño
 
-   Minimalista, claro y profesional. La jerarquía la hacen el espacio y
-   la tipografía, no la decoración.
+   Referencia declarada: Linear. De ahí se toma el CRITERIO, no la marca.
 
-   Reglas del sistema:
-   · Un solo color de acento, usado poco: acción principal, estado
-     activo y dato clave. Nada más.
-   · Neutros fríos y limpios. Ni beige ni sepia.
-   · Sombras de una sola capa, muy suaves. Sirven para separar planos,
-     no para adornar.
-   · Nada de degradados, resplandores, texturas ni patrones de fondo.
+   Principios:
+   1. Casi negro, nunca negro puro. #08090A tiene profundidad; #000 se ve
+      chato y barato en pantallas OLED.
+   2. Los bordes son blanco a muy baja opacidad, no grises sólidos. Así
+      se integran con cualquier superficie sin ensuciar.
+   3. El texto secundario es gris frío, no blanco con opacidad: mantiene
+      el contraste parejo sobre fondos distintos.
+   4. El acento aparece MUY poco. Si está en todos lados, no acentúa nada.
+   5. La tipografía va apretada y en peso medio. El negro grueso es lo que
+      hace que un titular se vea de plantilla.
+   6. Un solo resplandor en toda la página, detrás del producto en la
+      portada. Nada más de decoración.
    ══════════════════════════════════════════════════════════════════ */
 
 :root {
+  /* Modo claro: existe, pero el sitio nace en oscuro. */
   --bg: #ffffff;
-  --bg-subtle: #f7f8f9;
+  --bg-subtle: #f7f8f8;
   --surface: #ffffff;
-  --surface-2: #f2f4f5;
+  --surface-2: #f2f3f4;
+  --elevated: #ffffff;
 
-  --border: #e5e7eb;
-  --border-strong: #d1d5db;
+  --border: rgba(8, 9, 10, 0.09);
+  --border-strong: rgba(8, 9, 10, 0.16);
 
-  --fg: #0c0e12;
-  --fg-muted: #565d6b;
-  --fg-subtle: #8b919d;
+  --fg: #08090a;
+  --fg-muted: #63666d;
+  --fg-subtle: #8b8f96;
 
-  /* Verde profundo: serio, poco visto como color principal y con buen
-     contraste sobre blanco. Se distingue del verde de WhatsApp. */
-  --accent: #0f6b46;
-  --accent-hover: #0b5537;
+  --accent: #5a44e0;
+  --accent-hover: #4b37c9;
   --accent-fg: #ffffff;
-  --accent-soft: #e9f3ee;
-  --accent-border: #b9dbcb;
+  --accent-soft: rgba(90, 68, 224, 0.09);
+  --accent-border: rgba(90, 68, 224, 0.25);
 
-  --success: #0f6b46;
-  --success-soft: #e9f3ee;
-  --warning: #9a6212;
-  --warning-soft: #fdf3e4;
-  --danger: #b42318;
-  --danger-soft: #fdeceb;
-  --info: #1c4ed8;
-  --info-soft: #eaf0fe;
+  --success: #1a7f52;
+  --success-soft: rgba(26, 127, 82, 0.1);
+  --warning: #8f6410;
+  --warning-soft: rgba(143, 100, 16, 0.1);
+  --danger: #c0362c;
+  --danger-soft: rgba(192, 54, 44, 0.09);
+  --info: #2f5fd0;
+  --info-soft: rgba(47, 95, 208, 0.1);
 
-  --radius: 0.625rem;
-  --radius-sm: 0.375rem;
+  --radius: 0.5rem;
+  --radius-lg: 0.75rem;
 
-  --shadow-xs: 0 1px 2px rgba(12, 14, 18, 0.05);
-  --shadow-sm: 0 1px 3px rgba(12, 14, 18, 0.07), 0 1px 2px rgba(12, 14, 18, 0.04);
-  --shadow-md: 0 4px 12px rgba(12, 14, 18, 0.07);
-  --shadow-lg: 0 16px 40px -12px rgba(12, 14, 18, 0.16);
+  --shadow-xs: 0 1px 2px rgba(8, 9, 10, 0.05);
+  --shadow-sm: 0 2px 6px rgba(8, 9, 10, 0.07);
+  --shadow-md: 0 8px 24px rgba(8, 9, 10, 0.09);
+  --shadow-lg: 0 24px 60px -20px rgba(8, 9, 10, 0.22);
 }
 
 .dark {
-  --bg: #0b0d10;
-  --bg-subtle: #101317;
-  --surface: #14171c;
-  --surface-2: #1b1f25;
+  --bg: #08090a;
+  --bg-subtle: #0b0c0d;
+  --surface: #0f1011;
+  --surface-2: #141517;
+  --elevated: #17181a;
 
-  --border: #262b32;
-  --border-strong: #363c45;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
 
-  --fg: #f0f2f4;
-  --fg-muted: #9aa2ae;
-  --fg-subtle: #6e7683;
+  --fg: #f7f8f8;
+  --fg-muted: #8a8f98;
+  --fg-subtle: #62666d;
 
-  --accent: #29a874;
-  --accent-hover: #35bd84;
-  --accent-fg: #04150d;
-  --accent-soft: #10241b;
-  --accent-border: #1d4a36;
+  --accent: #7c6bf5;
+  --accent-hover: #8f81f7;
+  --accent-fg: #ffffff;
+  --accent-soft: rgba(124, 107, 245, 0.12);
+  --accent-border: rgba(124, 107, 245, 0.32);
 
-  --success: #29a874;
-  --success-soft: #10241b;
+  --success: #4cb782;
+  --success-soft: rgba(76, 183, 130, 0.12);
   --warning: #d9a441;
-  --warning-soft: #251d10;
-  --danger: #f0685c;
-  --danger-soft: #2a1513;
+  --warning-soft: rgba(217, 164, 65, 0.12);
+  --danger: #eb5757;
+  --danger-soft: rgba(235, 87, 87, 0.12);
   --info: #6b93f5;
-  --info-soft: #131c2e;
+  --info-soft: rgba(107, 147, 245, 0.12);
 
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 16px 40px -12px rgba(0, 0, 0, 0.7);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 32px 80px -24px rgba(0, 0, 0, 0.8);
 }
 
 @theme inline {
@@ -95,6 +100,7 @@
   --color-bg-subtle: var(--bg-subtle);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-elevated: var(--elevated);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
 
@@ -136,32 +142,39 @@
     background-color: var(--bg);
     color: var(--fg);
     font-family: var(--font-sans-base), system-ui, sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   /*
-    Escala tipográfica cerrada. En titulares grandes el tracking se aprieta:
-    es lo que separa una jerarquía cuidada de una por defecto.
+    Peso medio y tracking negativo. El 700 en titulares grandes es lo que
+    delata una plantilla; el 500–600 con las letras juntas se lee caro.
   */
   h1 {
-    font-weight: 600;
-    letter-spacing: -0.035em;
-    line-height: 1.05;
+    font-weight: 500;
+    letter-spacing: -0.028em;
+    line-height: 1.06;
     text-wrap: balance;
   }
 
   h2 {
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -0.024em;
+    line-height: 1.12;
     text-wrap: balance;
   }
 
-  h3, h4 {
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    line-height: 1.25;
+  h3 {
+    font-weight: 500;
+    letter-spacing: -0.016em;
+    line-height: 1.3;
+  }
+
+  h4, h5 {
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 
   p {
@@ -169,44 +182,84 @@
   }
 
   ::selection {
-    background: var(--accent-soft);
-    color: var(--accent);
+    background: var(--accent);
+    color: #fff;
   }
 
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
-    border-radius: 2px;
+    border-radius: 3px;
   }
 }
 
 @layer components {
-  /** Antetítulo de sección. Discreto, en mayúsculas, con el acento. */
-  .eyebrow {
-    font-size: 0.8125rem;
-    font-weight: 600;
+  /** Numeral de etapa: «1.0», «2.0». Marca el recorrido del producto. */
+  .stage {
+    font-family: var(--font-mono-base), monospace;
+    font-size: 0.75rem;
     letter-spacing: 0.02em;
-    color: var(--accent);
+    color: var(--fg-subtle);
   }
 
-  /** Superficie elevada estándar de todo el sitio. */
-  .card {
+  /** Superficie estándar. */
+  .surface {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-xs);
+    border-radius: var(--radius-lg);
+  }
+
+  /**
+   * Línea superior más clara en las tarjetas elevadas. Simula la luz que
+   * pega en el canto de arriba y es lo que separa una superficie oscura
+   * bien hecha de un rectángulo gris.
+   */
+  .rim::before {
+    content: "";
+    position: absolute;
+    inset-inline: 1px;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.14),
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  /**
+   * Viñeta de la portada. No es un resplandor de color: es una aclaración
+   * muy leve del fondo que separa el producto del borde de la pantalla.
+   * Un degradado de color en el hero es el sello de la plantilla.
+   */
+  .vignette {
+    background: radial-gradient(
+      ellipse 70% 50% at 50% 0%,
+      rgba(255, 255, 255, 0.045),
+      transparent 70%
+    );
+  }
+
+  /** Separador que se desvanece en los extremos. */
+  .rule {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--border-strong),
+      transparent
+    );
   }
 }
 
-/* Aparición breve, solo en la portada. */
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(12px); }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: none; }
 }
 
-.animate-in-up {
-  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
+.rise { animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

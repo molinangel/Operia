@@ -12,7 +12,7 @@ import {
   Features,
   FinalCta,
   Hero,
-  HowItWorks,
+  Journey,
   PainPoints,
   Pricing,
   RelatedIndustries,
@@ -78,9 +78,9 @@ export default async function RubroPage({ params }: Props) {
       />
 
       <Hero preset={preset} />
+      <Journey preset={preset} />
       <PainPoints preset={preset} />
       <Features preset={preset} />
-      <HowItWorks preset={preset} />
       <Configurable preset={preset} />
       <Pricing compact />
       <Faq preset={preset} />
