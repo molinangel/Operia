@@ -208,8 +208,16 @@ export async function recalcJobTotals(
 ) {
   const [items, payments] = await Promise.all([
     tx.jobItem.findMany({ where: { jobId, orgId: ctx.orgId } }),
-    tx.payment.aggregate({
-      where: { jobId, orgId: ctx.orgId, archivedAt: null, direction: "IN" },
+    /*
+      Cobrado = entradas menos salidas.
+
+      Los pagos son append-only: una anulación no borra el original, agrega su
+      inverso. Por eso hay que restar los OUT en vez de filtrar por archivado.
+      Es más simple y no se puede olvidar el filtro en otra consulta.
+    */
+    tx.payment.groupBy({
+      by: ["direction"],
+      where: { jobId, orgId: ctx.orgId },
       _sum: { amountCents: true },
     }),
   ]);
@@ -229,7 +237,9 @@ export async function recalcJobTotals(
       subtotalCents: totals.subtotalCents,
       taxCents: totals.taxCents,
       totalCents: totals.totalCents,
-      paidCents: payments._sum.amountCents ?? 0,
+      paidCents:
+        (payments.find((r) => r.direction === "IN")?._sum.amountCents ?? 0) -
+        (payments.find((r) => r.direction === "OUT")?._sum.amountCents ?? 0),
     },
   });
 }

@@ -112,6 +112,7 @@ model Organization {
   auditLogs         AuditLog[]
   outbound          OutboundMessage[]
   notificationRules NotificationRule[]
+  exchangeRates     ExchangeRate[]
   subscription      Subscription?
 
   @@index([archivedAt])
@@ -448,22 +449,41 @@ enum PaymentDirection {
   OUT
 }
 
+/// Pago.
+///
+/// APPEND-ONLY: un pago nunca se edita ni se archiva. Un error se corrige
+/// creando un pago inverso que apunta al original por `reversesId`.
+///
+/// Es la misma regla que el libro contable inmutable de SH, y la razón es la
+/// misma: si el registro de dinero se puede editar, el historial deja de ser
+/// prueba de nada. Con reversos, la cuenta siempre se puede reconstruir.
 model Payment {
-  id          String           @id @default(cuid())
-  orgId       String
-  contactId   String?
-  jobId       String?
-  direction   PaymentDirection @default(IN)
-  amountCents Int
-  currency    String           @default("USD")
-  exchangeRate Decimal?        @db.Decimal(18, 6)
+  id           String           @id @default(cuid())
+  orgId        String
+  contactId    String?
+  jobId        String?
+  direction    PaymentDirection @default(IN)
+  amountCents  Int
+  currency     String           @default("USD")
+
+  /// Importe convertido a la moneda base de la organización, con la tasa del
+  /// día del cobro. Se guarda calculado, no se recalcula nunca: reconvertir un
+  /// cobro viejo con la tasa de hoy es la forma más rápida de descuadrar la caja
+  /// en una economía con inflación.
+  baseAmountCents Int?
+  exchangeRate    Decimal?      @db.Decimal(18, 6)
+
   method      String
   reference   String?
-  paidAt      DateTime         @default(now())
+  paidAt      DateTime  @default(now())
   notes       String?
   createdById String?
-  createdAt   DateTime         @default(now())
-  archivedAt  DateTime?
+  createdAt   DateTime  @default(now())
+
+  /// Pago que este reversa. Uno a uno: un pago se anula una sola vez.
+  reversesId String?  @unique
+  reverses   Payment? @relation("PaymentReversal", fields: [reversesId], references: [id], onDelete: SetNull)
+  reversedBy Payment? @relation("PaymentReversal")
 
   org     Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
   contact Contact?     @relation(fields: [contactId], references: [id], onDelete: SetNull)
@@ -473,6 +493,29 @@ model Payment {
   @@index([orgId, contactId])
   @@index([orgId, jobId])
   @@map("payment")
+}
+
+/// Cotización de una moneda contra la moneda base de la organización.
+///
+/// Tomado de SH, que resolvió bien el problema venezolano: el negocio cobra en
+/// varias monedas y la tasa cambia todos los días. Se guarda la serie histórica
+/// para poder auditar con qué tasa se convirtió cada cobro.
+model ExchangeRate {
+  id           String   @id @default(cuid())
+  orgId        String
+  currency     String
+  baseCurrency String
+  rate         Decimal  @db.Decimal(18, 6)
+  effectiveOn  DateTime @db.Date
+  source       String   @default("manual")
+  createdById  String?
+  createdAt    DateTime @default(now())
+
+  org Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@unique([orgId, currency, effectiveOn])
+  @@index([orgId, effectiveOn])
+  @@map("exchange_rate")
 }
 
 // ═══════════════════════════════════════════════════════════════

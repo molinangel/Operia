@@ -66,9 +66,9 @@ export const contactsRepo = {
           include: { status: true },
         },
         payments: {
-          where: { archivedAt: null },
           orderBy: { paidAt: "desc" },
           take: 20,
+          include: { reverses: true, reversedBy: true },
         },
       },
     });

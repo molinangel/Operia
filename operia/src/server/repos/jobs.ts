@@ -107,7 +107,9 @@ export const jobsRepo = {
         contact: true,
         asset: true,
         items: { orderBy: { position: "asc" } },
-        payments: { where: { archivedAt: null }, orderBy: { paidAt: "desc" } },
+        // Sin filtro de archivado: los pagos son append-only. Una anulación
+        // aparece como un movimiento inverso, y verla es lo correcto.
+        payments: { orderBy: { paidAt: "desc" }, include: { reverses: true, reversedBy: true } },
         documents: {
           where: { archivedAt: null },
           orderBy: { createdAt: "desc" },

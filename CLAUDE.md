@@ -124,6 +124,20 @@ en servidor de las landings es el canal de captación del negocio. Ver docs/02.
 10. **Validación con Zod en el borde** de toda Server Action. Los tipos se derivan
     del esquema, no al revés.
 
+11. **Las invariantes críticas viven en la base de datos.** `CHECK` y `EXCLUDE` en
+    la migración, no solo validaciones en el servicio. Una regla que la aplicación
+    recuerda cumplir es una regla que algún día se rompe. Prisma no las modela:
+    van escritas a mano en el SQL de la migración. Verificar con
+    `npx tsx scripts/verify-db-invariants.ts`.
+
+12. **Los pagos son append-only.** Nunca se editan ni se archivan. Un error se
+    corrige con un pago inverso enlazado por `reversesId`, con motivo obligatorio
+    y conservando la tasa de cambio original. El saldo es entradas menos salidas.
+
+13. **La moneda base se calcula al momento del cobro y no se recalcula.** Si no
+    hay cotización para esa fecha, el importe base queda en `null`: un dato
+    faltante y visible es mejor que un número inventado con la tasa de hoy.
+
 ---
 
 ## 5. Convenciones de código
@@ -163,6 +177,10 @@ npx prisma migrate dev   # crear y aplicar migración en desarrollo
 npx prisma migrate deploy# aplicar migraciones en producción
 npx prisma studio        # explorador visual de la base
 npm run db:seed          # cargar los planes
+
+# Verificaciones (corren contra la base real)
+npx tsx scripts/verify-tenant-isolation.ts   # aislamiento entre organizaciones
+npx tsx scripts/verify-db-invariants.ts      # restricciones CHECK y EXCLUDE
 ```
 
 ---
