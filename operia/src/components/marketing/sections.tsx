@@ -145,7 +145,7 @@ export function Journey({ preset }: { preset: IndustryPreset }) {
                 !stage.wide && i % 2 === 1 && "lg:[&>*:first-child]:order-2",
               )}
             >
-              <div className={cn(stage.wide && "mx-auto max-w-2xl text-center")}>
+              <div className={cn(stage.wide && "max-w-2xl")}>
                 <p className="stage">
                   {stage.n} · {stage.label}
                 </p>
@@ -155,14 +155,14 @@ export function Journey({ preset }: { preset: IndustryPreset }) {
                 <p
                   className={cn(
                     "mt-4 leading-relaxed text-fg-muted",
-                    stage.wide ? "mx-auto max-w-xl" : "max-w-md",
+                    stage.wide ? "max-w-xl" : "max-w-md",
                   )}
                 >
                   {stage.body}
                 </p>
               </div>
 
-              <div className={cn(stage.wide && "mx-auto max-w-5xl")}>
+              <div className={cn(stage.wide && "max-w-5xl")}>
                 {stage.visual}
               </div>
             </div>
@@ -186,7 +186,7 @@ export function PainPoints({ preset }: { preset: IndustryPreset }) {
           </h2>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
           {preset.marketing.painPoints.map((pain) => (
             <div key={pain.title} className="bg-bg p-7">
               <h3 className="text-base">{pain.title}</h3>
@@ -315,7 +315,7 @@ export function Pricing({ compact = false }: { compact?: boolean }) {
           </p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl gap-5 lg:grid-cols-3">
+        <div className="mt-16 grid gap-5 lg:grid-cols-3">
           {PLANS.map((plan) => (
             <div
               key={plan.code}
@@ -396,15 +396,24 @@ export function Faq({ preset }: { preset: IndustryPreset }) {
   return (
     <section className="border-t border-border py-24">
       <Container>
-        <div className="max-w-3xl">
-          <div>
+        {/*
+          Dos columnas: el título queda fijo a la izquierda y las preguntas
+          ocupan el resto. Alineado a la izquierda en una sola columna angosta
+          dejaba media pantalla vacía en escritorio.
+        */}
+        <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:self-start">
             <p className="stage">Dudas</p>
             <h2 className="mt-4 text-[2rem] sm:text-[2.5rem]">
               Preguntas frecuentes
             </h2>
+            <p className="mt-5 leading-relaxed text-fg-muted">
+              Si te queda alguna sin responder, escribinos por WhatsApp y te
+              contestamos hoy mismo.
+            </p>
           </div>
 
-          <div className="mt-14 divide-y divide-border border-y border-border">
+          <div className="divide-y divide-border border-y border-border">
             {preset.marketing.faq.map((item, i) => (
               <details key={i} className="group py-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium">
@@ -418,7 +427,9 @@ export function Faq({ preset }: { preset: IndustryPreset }) {
                     </svg>
                   </span>
                 </summary>
-                <p className="mt-3 leading-relaxed text-fg-muted">{item.a}</p>
+                <p className="mt-3 max-w-2xl leading-relaxed text-fg-muted">
+                  {item.a}
+                </p>
               </details>
             ))}
           </div>
