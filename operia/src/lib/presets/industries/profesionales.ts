@@ -663,24 +663,56 @@ export const generic: IndustryPreset = {
   notificationRules: COMMON_RULES,
   documentTemplates: DEFAULT_DOC_TEMPLATES,
 
+  /**
+   * Este contenido es la vista previa del hero de la home: lo primero que ve
+   * cualquier visitante. Tiene que parecer el tablero de un negocio real, no
+   * una plantilla con «cliente de ejemplo 1» — eso resta credibilidad al toque.
+   */
   showcase: {
     contacts: [
-      { name: "Cliente de ejemplo 1", phone: "+584121234567" },
-      { name: "Cliente de ejemplo 2", phone: "+584241234567" },
+      { name: "María Rodríguez", phone: "+584121234567" },
+      { name: "Comercial Delta C.A.", phone: "+584241234567" },
+      { name: "Luis Fernández", phone: "+584161234567" },
+      { name: "Residencias El Parque", phone: "+584121112233" },
+      { name: "Ana Gómez", phone: "+584145556677" },
     ],
     assets: [],
     jobs: [
       {
-        title: "Trabajo de ejemplo",
+        title: "Presupuesto de instalación completa",
         statusIndex: 0,
         contactIndex: 0,
-        items: [{ description: "Servicio", quantity: 1, priceCents: 1000 }],
+        items: [{ description: "Visita técnica", quantity: 1, priceCents: 3500 }],
       },
       {
-        title: "Segundo trabajo de ejemplo",
-        statusIndex: 1,
+        title: "Mantenimiento mensual de oficinas",
+        statusIndex: 0,
         contactIndex: 1,
-        items: [{ description: "Hora de trabajo", quantity: 3, priceCents: 1500 }],
+        items: [{ description: "Servicio mensual", quantity: 1, priceCents: 12000 }],
+      },
+      {
+        title: "Revisión y ajuste de equipos",
+        statusIndex: 1,
+        contactIndex: 2,
+        items: [{ description: "Hora de trabajo", quantity: 4, priceCents: 1500 }],
+      },
+      {
+        title: "Reparación urgente reportada el lunes",
+        statusIndex: 1,
+        contactIndex: 3,
+        items: [{ description: "Servicio de emergencia", quantity: 1, priceCents: 8000 }],
+      },
+      {
+        title: "Cambio de piezas — esperando repuesto",
+        statusIndex: 2,
+        contactIndex: 4,
+        items: [{ description: "Hora de trabajo", quantity: 2, priceCents: 1500 }],
+      },
+      {
+        title: "Entrega y puesta en marcha",
+        statusIndex: 3,
+        contactIndex: 0,
+        items: [{ description: "Servicio", quantity: 1, priceCents: 4500 }],
       },
     ],
   },

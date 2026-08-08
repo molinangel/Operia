@@ -12,8 +12,16 @@ export function JsonLd({ data }: { data: object }) {
   return (
     <script
       type="application/ld+json"
-      // El contenido es nuestro, no viene del usuario: no hay riesgo de inyección.
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{
+        /**
+         * `JSON.stringify` no escapa `<`, así que un texto con `</script>`
+         * cerraría la etiqueta y ejecutaría lo que viniera después. Hoy todo el
+         * contenido es nuestro, pero el día que acá entre el nombre de un
+         * negocio esto ya está blindado. Recomendación explícita de los docs
+         * de Next 16 (01-app/02-guides/json-ld.md).
+         */
+        __html: JSON.stringify(data).replace(/</g, "\\u003c"),
+      }}
     />
   );
 }

@@ -73,7 +73,9 @@ export async function registerAction(
     const data = parsed.data;
     const meta = await requestMeta();
 
-    if (!checkRateLimit(`register:${meta.ip ?? "anon"}`, 5, 3_600_000)) {
+    // 12 por hora y por IP: frena el abuso automatizado sin bloquear a una
+    // oficina o un cibercafé donde varias personas comparten salida a internet.
+    if (!checkRateLimit(`register:${meta.ip ?? "anon"}`, 12, 3_600_000)) {
       throw new ValidationError(
         "Demasiados intentos de registro. Probá de nuevo en una hora.",
       );

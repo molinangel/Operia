@@ -74,6 +74,9 @@ export default function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
+      // Next lo exige cuando el CSS usa scroll-behavior: smooth, para no
+      // aplicarlo durante las transiciones de ruta.
+      data-scroll-behavior="smooth"
       className={`${sans.variable} ${display.variable} ${mono.variable} h-full`}
     >
       <body className="min-h-full flex flex-col">

@@ -139,6 +139,11 @@ en servidor de las landings es el canal de captación del negocio. Ver docs/02.
 - **Nombres:** modelos `PascalCase`, campos `camelCase`, tablas `snake_case` vía
   `@@map`.
 - **Sin `any`.** Sin `@ts-ignore` salvo con comentario justificando.
+- **Nunca un artículo junto al vocabulario configurable.** El cliente elige cómo
+  se llama su objeto central, y el género gramatical cambia: «Nuevo orden de
+  trabajo» está mal, «Nueva consulta» y «Nuevo proyecto» no se pueden generar con
+  la misma plantilla. Se escriben frases sin artículo: «Crear orden de trabajo»,
+  «Sin cliente asignado», «Todavía no cargaste consultas».
 - **Tailwind:** usar los tokens (`bg-surface`, `text-fg-muted`, `border-border`),
   nunca colores crudos de Tailwind. El sistema tiene modo claro y oscuro.
 
@@ -164,23 +169,32 @@ npm run db:seed          # cargar los planes
 
 ## 7. Estado actual
 
-**Terminado**
+**Terminado y verificado contra base de datos real**
 - Serie de documentación 00–10
-- Esquema de datos completo (Prisma 7)
-- 9 presets de rubro con contenido de marketing
-- Landing: home con selector de rubro interactivo, 8 landings por rubro
-  pre-renderizadas, precios, sitemap, robots, datos estructurados
-- Sistema de diseño con modo claro/oscuro
-- Auth: sesiones, argon2, límite de intentos, permisos, contexto multi-tenant
+- Esquema de datos completo (Prisma 7 + Supabase, migración aplicada)
+- 9 presets de rubro con configuración y contenido de marketing
+- Landing: home con selector interactivo de rubro, 8 landings por rubro
+  pre-renderizadas, precios, sitemap, robots, JSON-LD (con escape de `<`)
+- Sistema de diseño con modo claro/oscuro sin desajustes de hidratación
+- Auth propia: sesiones en base, argon2id, límite de intentos, permisos
+- Contexto multi-tenant con `requireCtx` (acciones) y `requirePageCtx` (páginas)
+- Registro en dos pasos que aplica el preset en una sola transacción
+- Aplicación: shell con selector de organización, panel de inicio con métricas,
+  tablero Kanban con arrastre optimista, detalle de trabajo con ítems y totales
+  calculados en servidor, historial, contactos con normalización de teléfono
 
-**En curso / siguiente**
-- Registro con aplicación del preset
-- Shell de la aplicación y tablero Kanban de trabajos
-- Contactos, activos, catálogo
-- Documentos, cobros, agenda, configuración
+**Verificaciones automatizadas**
+- `npx tsx scripts/verify-tenant-isolation.ts` — 18 comprobaciones de aislamiento
+- Prueba end-to-end con Playwright — 21 comprobaciones (registro, tablero,
+  ítems, contactos, modo oscuro, 404 de organización ajena, consola limpia)
+
+**Siguiente**
+- Documentos (presupuesto, orden, recibo) con portal público y PDF
+- Cobros y reporte de deudores
+- Agenda y recordatorios por WhatsApp
+- Configuración: estados, campos, plantillas, equipo
+- Activos y catálogo (pantallas propias)
 - Panel de administración y suscripciones
-
----
 
 ## 8. Qué NO hacer
 

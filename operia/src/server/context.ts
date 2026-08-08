@@ -1,9 +1,10 @@
 import type { Organization, Role } from "@prisma/client";
+import { notFound, redirect } from "next/navigation";
 import { cache } from "react";
 import { type Permission, permissionsFor } from "@/lib/permissions";
 import { requireUser, type SessionUser } from "./auth";
 import { db } from "./db";
-import { ForbiddenError, NotFoundError } from "./errors";
+import { ForbiddenError, NotFoundError, UnauthorizedError } from "./errors";
 
 /**
  * CONTEXTO DE PETICIÓN — la pieza más importante del sistema.
@@ -51,6 +52,25 @@ async function resolveCtx(orgSlug: string): Promise<Ctx> {
 
 /** Deduplicado por petición: el layout y la página lo piden y se resuelve una vez. */
 export const requireCtx = cache(resolveCtx);
+
+/**
+ * Versión para páginas y layouts.
+ *
+ * `requireCtx` lanza errores de dominio, que son lo correcto en una Server
+ * Action. Pero en una página un error sin atrapar es un 500, y una URL de otra
+ * organización tiene que responder 404 limpio, no un error del servidor.
+ */
+export const requirePageCtx = cache(async (orgSlug: string): Promise<Ctx> => {
+  try {
+    return await resolveCtx(orgSlug);
+  } catch (error) {
+    if (error instanceof NotFoundError) notFound();
+    if (error instanceof UnauthorizedError) {
+      redirect(`/login?next=/app/${orgSlug}`);
+    }
+    throw error;
+  }
+});
 
 export function assertCan(ctx: Ctx, permission: Permission) {
   if (!ctx.permissions.has(permission)) {

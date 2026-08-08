@@ -21,7 +21,9 @@ export function KanbanPreview({
     .map((status, index) => ({
       ...status,
       index,
-      jobs: preset.showcase.jobs.filter((j) => j.statusIndex === index),
+      jobs: preset.showcase.jobs
+        .map((job, jobIndex) => ({ ...job, jobIndex }))
+        .filter((j) => j.statusIndex === index),
     }))
     .filter((c) => c.kind !== "CANCELLED")
     .slice(0, 4);
@@ -87,7 +89,7 @@ export function KanbanPreview({
             </div>
 
             <div className="space-y-2">
-              {col.jobs.slice(0, 2).map((job, i) => {
+              {col.jobs.slice(0, 2).map((job) => {
                 const total = job.items.reduce(
                   (sum, it) => sum + it.quantity * it.priceCents,
                   0,
@@ -95,7 +97,7 @@ export function KanbanPreview({
                 const asset = assetLabel(job.assetIndex);
                 return (
                   <div
-                    key={i}
+                    key={job.jobIndex}
                     className="rounded-lg border border-border bg-surface p-2.5 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                   >
                     <p className="line-clamp-2 text-xs font-medium leading-snug">
@@ -110,9 +112,11 @@ export function KanbanPreview({
                       </p>
                     )}
                     <div className="mt-2 flex items-center justify-between">
+                      {/* Numeración correlativa global: si se repitiera entre
+                          columnas quedaría a la vista que es una maqueta. */}
                       <span className="font-mono text-[10px] text-fg-subtle">
                         {preset.key.slice(0, 2).toUpperCase()}-
-                        {String(i + 12).padStart(4, "0")}
+                        {String(job.jobIndex + 1042).padStart(5, "0")}
                       </span>
                       {total > 0 && (
                         <span className="text-[11px] font-semibold">
