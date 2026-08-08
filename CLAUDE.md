@@ -225,6 +225,19 @@ npx tsx scripts/verify-db-invariants.ts      # restricciones CHECK y EXCLUDE
 
 ---
 
+## 8b. Trampas conocidas
+
+- **Después de `prisma generate`, reiniciar `next dev`.** El proceso tiene el
+  cliente viejo cargado en memoria y falla con «Unknown field» en relaciones
+  nuevas. No es un bug del código; se pierde media hora buscándolo.
+- **`next dev` sobrevive a que se corte el proceso padre.** Si el puerto queda
+  tomado, matar el PID que informa el mensaje de error.
+- **Prisma CLI y `node-postgres` interpretan SSL distinto.** `DATABASE_URL` lleva
+  `uselibpqcompat=true`, `DATABASE_URL_UNPOOLED` no. Está explicado en
+  `.env.example`; no unificarlas.
+
+---
+
 ## 9. Al terminar una tarea
 
 1. `npm run build` tiene que pasar.
