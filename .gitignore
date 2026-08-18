@@ -32,3 +32,6 @@ npm-debug.log*
 
 # Prisma
 prisma/*.db
+
+# Puntero que regenera "next dev" en cada arranque; el contenido vive en AGENTS.md
+operia/CLAUDE.md

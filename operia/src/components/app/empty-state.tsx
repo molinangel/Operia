@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
  * Estado vacío.
  *
  * Es la primera pantalla que ve todo cliente nuevo, porque el sistema NO carga
- * datos de ejemplo (ver CLAUDE.md §4.7). Por eso no dice "no hay datos" y ya:
+ * datos de ejemplo (ver AGENTS.md §4.7). Por eso no dice "no hay datos" y ya:
  * explica para qué sirve la sección y ofrece la acción concreta para empezar.
  * Cada estado vacío es una oportunidad de activación o de abandono.
  */

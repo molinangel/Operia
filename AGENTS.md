@@ -1,4 +1,4 @@
-# CLAUDE.md — contexto del proyecto para asistentes de IA
+# AGENTS.md — contexto del proyecto para asistentes de IA
 
 > Este archivo lo lee automáticamente Claude Code (y sirve para cualquier otra IA).
 > **Leelo entero antes de tocar código.** Contiene las decisiones que ya se tomaron
@@ -24,7 +24,7 @@ Toda decisión técnica se juzga contra esa restricción.
 
 ```
 Proyecto/
-├── CLAUDE.md                 ← este archivo
+├── AGENTS.md                 ← este archivo
 ├── docs/                     ← la serie 00–10, fuente de verdad del proyecto
 │   ├── 00-panorama-de-oportunidades.md
 │   ├── 01-producto-y-alcance.md

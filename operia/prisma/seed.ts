@@ -11,7 +11,7 @@ loadEnv({ path: ".env", quiet: true });
  *
  * Carga ÚNICAMENTE los planes de suscripción, que son configuración del sistema.
  * No crea organizaciones, usuarios ni datos de ejemplo: cada cuenta se configura
- * sola al registrarse, con el preset de su rubro. Ver CLAUDE.md §4.7.
+ * sola al registrarse, con el preset de su rubro. Ver AGENTS.md §4.7.
  */
 async function main() {
   const connectionString =

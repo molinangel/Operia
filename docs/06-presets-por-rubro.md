@@ -413,7 +413,7 @@ gestión que arranca con datos mentirosos empieza pidiendo desconfianza.
 | **Vista previa en la landing** | La demostración con datos ilustrativos vive en la web pública (`preset.showcase`), donde corresponde: es material de venta, no de producción |
 
 El contenido de `preset.showcase` en el código **solo alimenta la landing pública**. Nunca se escribe
-en la base de datos. Está documentado como regla inviolable en `CLAUDE.md` §4.7.
+en la base de datos. Está documentado como regla inviolable en `AGENTS.md` §4.7.
 
 ---
 

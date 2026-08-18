@@ -42,7 +42,7 @@ Si el código y un documento se contradicen, uno de los dos está mal y hay que 
 | 09 | [Despliegue y operación](docs/09-despliegue-y-operacion.md) | Producción, respaldos, incidentes |
 | 10 | [Checklist de cuentas](docs/10-checklist-cuentas-y-tokens.md) | Lo único que hay que hacer a mano |
 
-Para asistentes de IA: **[CLAUDE.md](CLAUDE.md)** tiene el contexto y las reglas del proyecto.
+Para asistentes de IA: **[AGENTS.md](AGENTS.md)** tiene el contexto y las reglas del proyecto.
 
 ---
 
@@ -74,7 +74,7 @@ Sin Redis, sin microservicios, sin GraphQL. Las razones están en
 
 ```
 Proyecto/
-├── CLAUDE.md          contexto para asistentes de IA
+├── AGENTS.md          contexto para asistentes de IA
 ├── docs/              la serie 00–10
 └── operia/            la aplicación
     ├── prisma/        esquema y migraciones
@@ -99,4 +99,4 @@ Proyecto/
 2. **El dinero se guarda en centavos enteros.** Nunca `float`.
 3. **Nada se borra.** Ni por pedido, ni por falta de pago. Se archiva.
 
-El resto está en [CLAUDE.md](CLAUDE.md) §4.
+El resto está en [AGENTS.md](AGENTS.md) §4.
